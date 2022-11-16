@@ -2,10 +2,7 @@ import React from "react";
 import { Result, Button } from "antd";
 import { withRouter } from "react-router-dom";
 
-
 const NotFound = (props) => {
-
-
   return (
     <Result
       status="404"

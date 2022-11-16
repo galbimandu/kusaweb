@@ -1,6 +1,6 @@
 import React from "react";
 import styled, { ThemeContext } from "styled-components";
-
+import { Input } from "ui";
 const Signup = () => {
   return (
     <PageBorder>
@@ -34,8 +34,10 @@ export default Signup;
 
 const PageBorder = styled.div`
   display: flex;
-  /* justify-content: center;
-  align-items: center; */
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
 `;
 const InputContainer = styled.div``;
 const InputLine = styled.div`
@@ -48,7 +50,7 @@ const InputTitle = styled.div`
   width: 100px;
 `;
 
-const InputBox = styled.input`
+const InputBox = styled(Input)`
   display: flex;
   padding-left: 20px;
   width: 100%;
