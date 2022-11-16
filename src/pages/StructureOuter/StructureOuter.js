@@ -5,12 +5,14 @@ import styled from "styled-components";
 import lazyRetry from "utils/lazyRetry";
 const Signup = loadable(() => lazyRetry(() => import("pages/Signup/Signup")));
 const Home = loadable(() => lazyRetry(() => import("pages/Home/Home")));
+const Login = loadable(() => lazyRetry(() => import("pages/Login/Login")));
 
 const StructureOuter = () => {
   return (
     <Container>
-      <Route path="/home" component={Home} />
-      <Route path="/home/signup" component={Signup} />
+      <Route exact path="/home" component={Home} />
+      <Route exact path="/home/signup" component={Signup} />
+      <Route exact path="/home/login" component={Login} />
     </Container>
   );
 };
