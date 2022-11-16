@@ -13,7 +13,7 @@ const Organization = loadable(() =>
 const StructureInner = () => {
   return (
     <Wrapper>
-      <Route path="/organization" component={Organization} />
+      <Route exact path="/organization" component={Organization} />
     </Wrapper>
   );
 };
