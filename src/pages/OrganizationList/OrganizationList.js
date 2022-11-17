@@ -3,35 +3,29 @@ import styled from "styled-components";
 import { Card } from "ui";
 
 const OrganizationList = () => {
+  const data = [{ name: "kcu" }, { name: "unikists" }];
   return (
     <div>
-      fdsfsad
-      <OrgCard
-        title="KCU (hardcoded)"
-        extra={<a href="Organization">More</a>}
-        style={{
-          width: 300,
-        }}
-      >
-        <p>This is KCU.</p>
-        <p>It's the best organization.</p>
-        <p>Please join.</p>
-      </OrgCard>
-      <OrgCard
-        title="Get Org Name"
-        extra={<a href="Organization">More</a>} // insert organization's href page
-        style={{
-          width: 300,
-        }}
-      >
-        <p>Insert</p>
-        <p>Organization</p>
-        <p>Description</p>
-      </OrgCard>
+      {data.map((org) => (
+        <OrgCard
+          hoverable={true}
+          title={org.name}
+          extra={<a href="Organization">More</a>}
+          style={{
+            width: 300,
+          }}
+        >
+          <p>{org.name}</p>
+          <p>It's the best organization.</p>
+          <p>Please join.</p>
+        </OrgCard>
+      ))}
     </div>
   );
 };
 
 export default OrganizationList;
 
-const OrgCard = styled(Card)``;
+const OrgCard = styled(Card)`
+  margin: 4px 12px;
+`;

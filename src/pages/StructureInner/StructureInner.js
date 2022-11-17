@@ -18,7 +18,7 @@ const StructureInner = () => {
   return (
     <Wrapper>
       <Route exact path="/organization" component={Organization} />
-      <Route exact path="/organizationList" component={OrganizationList} />
+      <Route exact path="/organizations" component={OrganizationList} />
     </Wrapper>
   );
 };
