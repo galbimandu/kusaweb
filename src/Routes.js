@@ -37,7 +37,7 @@ const Routes = () => {
                 return <Redirect to={`/home/${props.location.search}`} />;
               }}
             />
-            <Route path="/" component={StructureOuter} />
+            <Route path="/home" component={StructureOuter} />
             <Route path="/" component={StructureInner} />
             <Route exact path="/404" component={NotFound} />
             <Route render={() => <Redirect to="/home" />} />
