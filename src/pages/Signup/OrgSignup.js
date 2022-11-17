@@ -1,27 +1,23 @@
 import React, { useState } from "react";
-import styled, { ThemeContext } from "styled-components";
 import { Input, Button } from "ui";
+import styled, { ThemeContext } from "styled-components";
 import { useHistory } from "react-router-dom";
 
 const Signup = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [major, setMajor] = useState("");
-  const [DOB, setDOB] = useState("");
-  const [number, setNumber] = useState("");
+  const [fields, setFields] = useState("");
+  const [IId, setIId] = useState("");
+  const history = useHistory();
   const [ok, setOk] = useState(true);
 
-  const history = useHistory();
-
   const check = () => {
-    return (
-      name != "" && email != "" && major != "" && DOB != "" && number != ""
-    );
+    return name != "" && email != "" && fields != "" && IId != "";
   };
 
   const onSignup = () => {
     if (check()) {
-      console.log("nice");
+      window.alert("success!");
       history.push("/home");
     } else {
       setOk(false);
@@ -48,27 +44,19 @@ const Signup = () => {
           ></InputBox>
         </InputLine>
         <InputLine>
-          <InputTitle>전공</InputTitle>
+          <InputTitle>관심분야</InputTitle>
           <InputBox
-            type="major"
-            value={major}
-            onChange={(e) => setMajor(e.target.value)}
+            type="fields"
+            value={fields}
+            onChange={(e) => setFields(e.target.value)}
           ></InputBox>
         </InputLine>
         <InputLine>
-          <InputTitle>생년</InputTitle>
+          <InputTitle>Insta ID</InputTitle>
           <InputBox
-            type="DOB"
-            value={DOB}
-            onChange={(e) => setDOB(e.target.value)}
-          ></InputBox>
-        </InputLine>
-        <InputLine>
-          <InputTitle>전화번호</InputTitle>
-          <InputBox
-            type="number"
-            value={number}
-            onChange={(e) => setNumber(e.target.value)}
+            type="IId"
+            value={IId}
+            onChange={(e) => setIId(e.target.value)}
           ></InputBox>
         </InputLine>
         <InputLine>
