@@ -1,16 +1,11 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { withRouter } from "react-router-dom";
-
+import InnerNav from "./Components/InnerNav";
 const Wrapper = (props) => {
   return (
     <>
-      {/* <MainNav
-
-      ></MainNav>
-      <Nav
-
-      /> */}
+      <InnerNav />
       <Content>{props.children}</Content>
     </>
   );
@@ -20,7 +15,7 @@ export default withRouter(Wrapper);
 
 const Content = styled.div`
   position: fixed;
-  top: 52px;
+  top: 56px;
   left: 0px;
   right: 0px;
   bottom: 0;
