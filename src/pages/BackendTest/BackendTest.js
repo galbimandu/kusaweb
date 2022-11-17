@@ -1,7 +1,12 @@
 import React from "react";
 //import here
 // import { useCourseList } from "apicache";
-const BackendTest = () => {
+import * as api from "../../apicache/api";
+
+
+const BackendTest = async () => {
+  const majors = await api.getMajors();
+  console.log(majors);
   //example for using queries
   // const {
   //   data: { results: courseList, count: courseNumber },
