@@ -3,16 +3,15 @@ import { Input, Button } from "ui";
 import styled, { ThemeContext } from "styled-components";
 import { useHistory } from "react-router-dom";
 
-const Signup = () => {
+const OrgSignup = () => {
   const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
   const [fields, setFields] = useState("");
   const [IId, setIId] = useState("");
   const history = useHistory();
   const [ok, setOk] = useState(true);
 
   const check = () => {
-    return name != "" && email != "" && fields != "" && IId != "";
+    return name != "" && fields != "" && IId != "";
   };
 
   const onSignup = () => {
@@ -27,33 +26,26 @@ const Signup = () => {
   return (
     <PageBorder>
       <InputContainer>
+        <Head>Sign Up for Organizations</Head>
         <InputLine>
-          <InputTitle>이름</InputTitle>
           <InputBox
+            placeholder="동아리명"
             type="name"
             value={name}
             onChange={(e) => setName(e.target.value)}
           ></InputBox>
         </InputLine>
         <InputLine>
-          <InputTitle>wisc 이메일</InputTitle>
           <InputBox
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          ></InputBox>
-        </InputLine>
-        <InputLine>
-          <InputTitle>관심분야</InputTitle>
-          <InputBox
+            placeholder="Fields related to Org"
             type="fields"
             value={fields}
             onChange={(e) => setFields(e.target.value)}
           ></InputBox>
         </InputLine>
         <InputLine>
-          <InputTitle>Insta ID</InputTitle>
           <InputBox
+            placeholder="Insta ID"
             type="IId"
             value={IId}
             onChange={(e) => setIId(e.target.value)}
@@ -68,9 +60,19 @@ const Signup = () => {
   );
 };
 
-export default Signup;
+export default OrgSignup;
 
-const SubmitBtn = styled(Button)``;
+const SubmitBtn = styled(Button)`
+  display: inline;
+  margin-top: 20px;
+  width: 100%;
+`;
+
+const Head = styled.h2`
+  margin-bottom: 30px;
+  width: 100%;
+  font-size: 3em;
+`;
 
 const PageBorder = styled.div`
   display: flex;
@@ -79,15 +81,16 @@ const PageBorder = styled.div`
   justify-content: center;
   align-items: center;
 `;
-const InputContainer = styled.div``;
+const InputContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
 const InputLine = styled.div`
   width: 500px;
   display: flex;
   justify-content: space-between;
-`;
-
-const InputTitle = styled.div`
-  width: 100px;
+  margin-bottom: 10px;
 `;
 
 const InputBox = styled(Input)`

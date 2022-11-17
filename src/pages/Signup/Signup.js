@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled, { ThemeContext } from "styled-components";
-import { Input, Button } from "ui";
+import { Input, Button, Select } from "ui";
 import { useHistory } from "react-router-dom";
 
 const Signup = () => {
@@ -8,14 +8,18 @@ const Signup = () => {
   const [email, setEmail] = useState("");
   const [major, setMajor] = useState("");
   const [DOB, setDOB] = useState("");
-  const [number, setNumber] = useState("");
+  const [standing, setStanding] = useState("");
   const [ok, setOk] = useState(true);
 
   const history = useHistory();
 
   const check = () => {
+    if (!email.includes("@wisc.edu")) {
+      window.alert("Please input valid WISC EMAIL");
+      return false;
+    }
     return (
-      name != "" && email != "" && major != "" && DOB != "" && number != ""
+      name != "" && email != "" && major != "" && DOB != "" && standing != ""
     );
   };
 
@@ -31,50 +35,50 @@ const Signup = () => {
   return (
     <PageBorder>
       <InputContainer>
+        <Head>Sign Up Page</Head>
         <InputLine>
-          <InputTitle>이름</InputTitle>
           <InputBox
+            placeholder="Name"
             type="name"
             value={name}
             onChange={(e) => setName(e.target.value)}
           ></InputBox>
         </InputLine>
         <InputLine>
-          <InputTitle>wisc 이메일</InputTitle>
           <InputBox
+            placeholder="WISC Email"
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           ></InputBox>
         </InputLine>
         <InputLine>
-          <InputTitle>전공</InputTitle>
           <InputBox
+            placeholder="Major"
             type="major"
             value={major}
             onChange={(e) => setMajor(e.target.value)}
           ></InputBox>
         </InputLine>
         <InputLine>
-          <InputTitle>생년</InputTitle>
           <InputBox
+            placeholder="Date of Birth"
             type="DOB"
             value={DOB}
             onChange={(e) => setDOB(e.target.value)}
           ></InputBox>
         </InputLine>
-        <InputLine>
-          <InputTitle>전화번호</InputTitle>
-          <InputBox
-            type="number"
-            value={number}
-            onChange={(e) => setNumber(e.target.value)}
-          ></InputBox>
-        </InputLine>
-        <InputLine>
-          <SubmitBtn onClick={onSignup}>Sign Up!</SubmitBtn>
-          {!ok && <div>please fill out the form</div>}
-        </InputLine>
+        <SelectBox
+          placeholder="Choose your standing"
+          onSelect={(value) => setStanding(value)}
+        >
+          <Option value="Freshman">Freshman</Option>
+          <Option value="Sophomore">Sophomore</Option>
+          <Option value="Junior">Junior</Option>
+          <Option value="Senior">Senior</Option>
+        </SelectBox>
+        <SubmitBtn onClick={onSignup}>Sign Up!</SubmitBtn>
+        {!ok && <div>please fill out the form</div>}
       </InputContainer>
     </PageBorder>
   );
@@ -82,7 +86,24 @@ const Signup = () => {
 
 export default Signup;
 
-const SubmitBtn = styled(Button)``;
+const SelectBox = styled(Select)`
+  width: 100%;
+`;
+
+const Option = styled(Select.Option)`
+  height: 50px;
+`;
+
+const SubmitBtn = styled(Button)`
+  display: inline;
+  margin-top: 20px;
+  width: 100%;
+`;
+
+const Head = styled.h2`
+  margin-bottom: 30px;
+  font-size: 3em;
+`;
 
 const PageBorder = styled.div`
   display: flex;
@@ -91,15 +112,16 @@ const PageBorder = styled.div`
   justify-content: center;
   align-items: center;
 `;
-const InputContainer = styled.div``;
+const InputContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
 const InputLine = styled.div`
   width: 500px;
   display: flex;
   justify-content: space-between;
-`;
-
-const InputTitle = styled.div`
-  width: 100px;
+  margin-bottom: 10px;
 `;
 
 const InputBox = styled(Input)`

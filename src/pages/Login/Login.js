@@ -2,10 +2,13 @@ import React, { useState } from "react";
 import styled, { ThemeContext } from "styled-components";
 import { Input, Button } from "ui";
 import { useHistory } from "react-router-dom";
+import { Checkbox } from "antd";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [remember, setRemember] = useState(false);
+
   const history = useHistory();
   const onLogin = () => {
     history.push("/home");
@@ -14,6 +17,7 @@ const Login = () => {
   return (
     <PageBorder>
       <InputContainer>
+        <Head>Login page</Head>
         <InputBox
           placeholder="Email"
           type="name"
@@ -26,6 +30,7 @@ const Login = () => {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         ></InputBox>
+        <Checkbox onClick={(e) => setRemember(!remember)}>Remember Me</Checkbox>
         <SubmitBtn onClick={onLogin}>Log In</SubmitBtn>
       </InputContainer>
     </PageBorder>
@@ -34,7 +39,16 @@ const Login = () => {
 
 export default Login;
 
-const SubmitBtn = styled(Button)``;
+const SubmitBtn = styled(Button)`
+  display: inline;
+  margin-top: 20px;
+  width: 100%;
+`;
+
+const Head = styled.h2`
+  margin-bottom: 30px;
+  font-size: 3em;
+`;
 
 const PageBorder = styled.div`
   display: flex;
@@ -44,6 +58,10 @@ const PageBorder = styled.div`
   align-items: center;
 `;
 const InputContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
   &:hover {
     border-color: ${({ theme }) => theme.colors.color_text_light} !important;
     transition: border-color 0.3s;
@@ -60,6 +78,7 @@ const InputBox = styled(Input)`
   border: 1px solid ${({ theme }) => theme.colors.color_base_darker};
   line-height: 1.2;
   box-shadow: none;
+  margin-bottom: 10px;
 
   &:hover {
     border-color: ${({ theme }) => theme.colors.color_text_light} !important;
