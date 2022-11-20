@@ -3,7 +3,14 @@ import styled from "styled-components";
 import { Card } from "ui";
 
 const OrganizationList = () => {
-  const data = [{ name: "kcu" }, { name: "unikists" }];
+  const data = [
+    {
+      name: "KCU",
+      fullname: "Korean Undergraduate Computer Science Union",
+      shortDes: "hi",
+    },
+    { name: "Unikists", shortDes: "hi" },
+  ];
   return (
     <div>
       {data.map((org) => (
