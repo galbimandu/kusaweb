@@ -44,7 +44,7 @@ const InnerNav = () => {
         }}
         style={{ color: theme.colors.color_state_danger_regular }}
       >
-        Log Out
+        Log Outㄴㄹㅇㄹㄴㅇㄴㄹㄹㄴㅇ
       </MenuItem>
     </Menu>
   );
