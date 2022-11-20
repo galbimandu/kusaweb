@@ -1,31 +1,22 @@
 import React, { useState } from "react";
+import { Input, Button } from "ui";
 import styled, { ThemeContext } from "styled-components";
-import { Input, Button, Select } from "ui";
 import { useHistory } from "react-router-dom";
 
-const Signup = () => {
+const OrgSignup = () => {
   const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [major, setMajor] = useState("");
-  const [DOB, setDOB] = useState("");
-  const [standing, setStanding] = useState("");
+  const [fields, setFields] = useState("");
+  const [IId, setIId] = useState("");
+  const history = useHistory();
   const [ok, setOk] = useState(true);
 
-  const history = useHistory();
-
   const check = () => {
-    if (!email.includes("@wisc.edu")) {
-      window.alert("Please input valid WISC EMAIL");
-      return false;
-    }
-    return (
-      name != "" && email != "" && major != "" && DOB != "" && standing != ""
-    );
+    return name != "" && fields != "" && IId != "";
   };
 
   const onSignup = () => {
     if (check()) {
-      console.log("nice");
+      window.alert("success!");
       history.push("/home");
     } else {
       setOk(false);
@@ -35,10 +26,10 @@ const Signup = () => {
   return (
     <PageBorder>
       <InputContainer>
-        <Head>Sign Up Page</Head>
+        <Head>Sign Up for Organizations</Head>
         <InputLine>
           <InputBox
-            placeholder="Name"
+            placeholder="동아리명"
             type="name"
             value={name}
             onChange={(e) => setName(e.target.value)}
@@ -46,53 +37,30 @@ const Signup = () => {
         </InputLine>
         <InputLine>
           <InputBox
-            placeholder="WISC Email"
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            placeholder="Fields related to Org"
+            type="fields"
+            value={fields}
+            onChange={(e) => setFields(e.target.value)}
           ></InputBox>
         </InputLine>
         <InputLine>
           <InputBox
-            placeholder="Major"
-            type="major"
-            value={major}
-            onChange={(e) => setMajor(e.target.value)}
+            placeholder="Insta ID"
+            type="IId"
+            value={IId}
+            onChange={(e) => setIId(e.target.value)}
           ></InputBox>
         </InputLine>
         <InputLine>
-          <InputBox
-            placeholder="Date of Birth"
-            type="DOB"
-            value={DOB}
-            onChange={(e) => setDOB(e.target.value)}
-          ></InputBox>
+          <SubmitBtn onClick={onSignup}>Sign Up!</SubmitBtn>
+          {!ok && <div>please fill out the form</div>}
         </InputLine>
-        <SelectBox
-          placeholder="Choose your standing"
-          onSelect={(value) => setStanding(value)}
-        >
-          <Option value="Freshman">Freshman</Option>
-          <Option value="Sophomore">Sophomore</Option>
-          <Option value="Junior">Junior</Option>
-          <Option value="Senior">Senior</Option>
-        </SelectBox>
-        <SubmitBtn onClick={onSignup}>Sign Up!</SubmitBtn>
-        {!ok && <div>please fill out the form</div>}
       </InputContainer>
     </PageBorder>
   );
 };
 
-export default Signup;
-
-const SelectBox = styled(Select)`
-  width: 100%;
-`;
-
-const Option = styled(Select.Option)`
-  height: 50px;
-`;
+export default OrgSignup;
 
 const SubmitBtn = styled(Button)`
   display: inline;
@@ -102,6 +70,7 @@ const SubmitBtn = styled(Button)`
 
 const Head = styled.h2`
   margin-bottom: 30px;
+  width: 100%;
   font-size: 3em;
 `;
 

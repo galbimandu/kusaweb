@@ -10,10 +10,15 @@ const Organization = loadable(() =>
   lazyRetry(() => import("pages/Organization/Organization"))
 );
 
+const BackendTest = loadable(() =>
+  lazyRetry(() => import("pages/BackendTest/BackendTest"))
+);
+
 const StructureInner = () => {
   return (
     <Wrapper>
       <Route exact path="/organization" component={Organization} />
+      <Route exact path="/backendtest" component={BackendTest} />
     </Wrapper>
   );
 };

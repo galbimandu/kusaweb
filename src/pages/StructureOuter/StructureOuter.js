@@ -6,12 +6,16 @@ import lazyRetry from "utils/lazyRetry";
 const Signup = loadable(() => lazyRetry(() => import("pages/Signup/Signup")));
 const Home = loadable(() => lazyRetry(() => import("pages/Home/Home")));
 const Login = loadable(() => lazyRetry(() => import("pages/Login/Login")));
+const OrgSignup = loadable(() =>
+  lazyRetry(() => import("pages/Signup/OrgSignup"))
+);
 
 const StructureOuter = () => {
   return (
     <Container>
       <Route exact path="/home" component={Home} />
       <Route exact path="/home/signup" component={Signup} />
+      <Route exact path="/home/orgsignup" component={OrgSignup} />
       <Route exact path="/home/login" component={Login} />
     </Container>
   );
