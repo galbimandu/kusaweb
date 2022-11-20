@@ -3,7 +3,6 @@ import React from "react";
 // import { useCourseList } from "apicache";
 import * as api from "../../apicache/api";
 
-
 const BackendTest = async () => {
   const majors = await api.getMajors();
   console.log(majors);
