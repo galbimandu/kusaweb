@@ -13,12 +13,16 @@ const Organization = loadable(() =>
 const OrganizationList = loadable(() =>
   lazyRetry(() => import("pages/OrganizationList/OrganizationList"))
 );
+const BackendTest = loadable(() =>
+  lazyRetry(() => import("pages/BackendTest/BackendTest"))
+);
 
 const StructureInner = () => {
   return (
     <Wrapper>
       <Route exact path="/organization" component={Organization} />
       <Route exact path="/organizations" component={OrganizationList} />
+      <Route exact path="/backendtest" component={BackendTest} />
     </Wrapper>
   );
 };
