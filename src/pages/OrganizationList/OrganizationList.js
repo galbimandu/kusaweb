@@ -3,17 +3,17 @@ import styled from "styled-components";
 import { Card } from "ui";
 
 const OrganizationList = () => {
-  const data = [
+  const orgData = [
     {
       name: "KCU",
       fullname: "Korean Undergraduate Computer Science Union",
-      shortDes: "hi",
+      shortDes: "한인 프로젝트 동아리",
     },
-    { name: "Unikists", shortDes: "hi" },
+    { name: "Unikists", shortDes: "한인 밴드 동아리" },
   ];
   return (
     <div>
-      {data.map((org) => (
+      {orgData.map((org) => (
         <OrgCard
           hoverable={true}
           title={org.name}
