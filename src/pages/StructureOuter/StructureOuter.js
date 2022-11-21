@@ -9,9 +9,6 @@ const Login = loadable(() => lazyRetry(() => import("pages/Login/Login")));
 const OrgSignup = loadable(() =>
   lazyRetry(() => import("pages/Signup/OrgSignup"))
 );
-const Detail = loadable(() =>
-  lazyRetry(() => import("pages/Organization/Detail"))
-);
 
 const StructureOuter = () => {
   return (
@@ -20,7 +17,6 @@ const StructureOuter = () => {
       <Route exact path="/home/signup" component={Signup} />
       <Route exact path="/home/orgsignup" component={OrgSignup} />
       <Route exact path="/home/login" component={Login} />
-      <Route exact path="/home/detail" component={Detail} />
     </Container>
   );
 };

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled, { ThemeContext } from "styled-components";
-import { Input, Button } from "ui";
+import { Input, SubmitButton, SubmitButtonBlack } from "ui";
 import { useHistory } from "react-router-dom";
 import { Checkbox } from "antd";
 
@@ -13,17 +13,22 @@ const Login = () => {
   const onLogin = () => {
     history.push("/home");
   };
+  const handleFindPassword = () => {
+    window.alert("Implement Find Password page");
+  };
 
   return (
     <PageBorder>
       <InputContainer>
-        <Head>Login page</Head>
+        <Head>Welcome back Badger</Head>
+        <Logo></Logo>
         <InputBox
           placeholder="Email"
           type="name"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         ></InputBox>
+        {<br></br>}
         <InputBox
           placeholder="Password"
           type="password"
@@ -32,6 +37,9 @@ const Login = () => {
         ></InputBox>
         <Checkbox onClick={(e) => setRemember(!remember)}>Remember Me</Checkbox>
         <SubmitBtn onClick={onLogin}>Log In</SubmitBtn>
+        <SubmitBtnBlack onClick={handleFindPassword}>
+          Forgot Password?
+        </SubmitBtnBlack>
       </InputContainer>
     </PageBorder>
   );
@@ -39,15 +47,36 @@ const Login = () => {
 
 export default Login;
 
-const SubmitBtn = styled(Button)`
-  display: inline;
-  margin-top: 20px;
-  width: 100%;
+const Logo = styled.div`
+  width: 50px;
+  height: 50px;
+
+  background: black;
+  border-radius: 40px;
+  margin-bottom: 6%;
 `;
 
-const Head = styled.h2`
-  margin-bottom: 30px;
-  font-size: 3em;
+const SubmitBtn = styled(SubmitButton)`
+  margin-top: 5%;
+  width: 85%;
+  margin-bottom: 3%;
+  height: 8%;
+`;
+
+const SubmitBtnBlack = styled(SubmitButtonBlack)`
+  width: 85%;
+  margin-bottom: 5%;
+  height: 8%;
+`;
+
+const Head = styled.h1`
+  margin-bottom: 2%;
+  font-family: "Spartan";
+  font-style: normal;
+
+  text-align: center;
+
+  color: #1a1a1a;
 `;
 
 const PageBorder = styled.div`
@@ -60,25 +89,31 @@ const PageBorder = styled.div`
 const InputContainer = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
-
-  &:hover {
-    border-color: ${({ theme }) => theme.colors.color_text_light} !important;
-    transition: border-color 0.3s;
-  }
+  width: 400px;
+  height: 500px;
+  background: #f8f7f5;
+  border-radius: 10px;
 `;
 
 const InputBox = styled(Input)`
+  width: 85%;
+  height: 7%;
+  margin-bottom: 5%;
+  box-sizing: border-box;
+
+  /* Auto layout */
+
   display: flex;
-  padding-left: 20px;
-  width: 384px;
-  height: 50px;
-  font-size: ${({ theme }) => theme.fontSizes.txt_small};
-  /* border: 1px solid rgb(192, 192, 192); */
-  border: 1px solid ${({ theme }) => theme.colors.color_base_darker};
-  line-height: 1.2;
-  box-shadow: none;
-  margin-bottom: 10px;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 10px;
+  gap: 10px;
+
+  background: #ffffff;
+  border: 1px solid #e4e4e4;
+  border-radius: 10px;
 
   &:hover {
     border-color: ${({ theme }) => theme.colors.color_text_light} !important;
