@@ -20,6 +20,7 @@ const Content = styled.div`
   right: 0px;
   bottom: 0;
   background-color: white;
+  overflow: scroll;
 
   /* @media ${({ theme }) => theme.screenSizes.mobile} {
     left: ${({ sidebarIsOpen }) => (sidebarIsOpen ? "52px" : "0")};

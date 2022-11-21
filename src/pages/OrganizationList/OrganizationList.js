@@ -1,38 +1,108 @@
 import React from "react";
 import styled from "styled-components";
-import { Card } from "ui";
-
+import { Card, Avatar } from "ui";
+import { useHistory } from "react-router-dom";
+//import unikists from "images/logo/unikists.png";
 const OrganizationList = () => {
+  const history = useHistory();
   const orgData = [
     {
-      name: "KCU",
+      id: 50,
+      abrv: "KCU",
       fullname: "Korean Undergraduate Computer Science Union",
-      shortDes: "한인 프로젝트 동아리",
+      description: "한인 프로젝트 동아리",
     },
-    { name: "Unikists", shortDes: "한인 밴드 동아리" },
+    {
+      id: 51,
+      abrv: "Unikists",
+      description: "한인 밴드 동아리",
+      //profile: unikists,
+    },
+    {
+      id: 52,
+      abrv: "KSEA",
+      fullname: "Korean-American Scientists and Engineers Association",
+      description: "한인 과학 동아리",
+    },
+    {
+      id: 53,
+      abrv: "KESL",
+      fullname: "Korean E-Sports Legacy",
+      description: "한인 게임 동아리",
+    },
+    {
+      id: 55,
+      abrv: "TEMP",
+      fullname: "Full Name Here",
+      description: "Brief Description of your organization.",
+    },
+    {
+      id: 56,
+      abrv: "TEMP",
+      fullname: "Full Name Here",
+      description: "Brief Description of your organization.",
+    },
+    {
+      id: 57,
+      abrv: "TEMP",
+      fullname: "Full Name Here",
+      description: "Brief Description of your organization.",
+    },
+    {
+      id: 58,
+      abrv: "TEMP",
+      fullname: "Full Name Here",
+      description: "Brief Description of your organization.",
+    },
+    {
+      id: 59,
+      abrv: "TEMP",
+      fullname: "Full Name Here",
+      description: "Brief Description of your organization.",
+    },
   ];
+
+  const handleOrgCardClick = (org) => {
+    history.push(`/organizations/${org.id}`);
+  };
+
+  const { Meta } = Card;
+
   return (
-    <div>
+    <OrgPageWrapper>
       {orgData.map((org) => (
         <OrgCard
+          cover={
+            <img
+              alt="cover"
+              src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
+            />
+          }
+          onClick={() => handleOrgCardClick(org)}
           hoverable={true}
-          title={org.name}
-          extra={<a href="Organization">More</a>}
-          style={{
-            width: 300,
-          }}
         >
-          <p>{org.name}</p>
-          <p>It's the best organization.</p>
-          <p>Please join.</p>
+          <Meta
+            avatar={<Avatar src="https://joeschmoe.io/api/v1/random" />}
+            title={org.abrv}
+            description={org.description}
+          />
         </OrgCard>
       ))}
-    </div>
+    </OrgPageWrapper>
   );
 };
 
 export default OrganizationList;
 
 const OrgCard = styled(Card)`
-  margin: 4px 12px;
+  margin: 12px 12px;
+  border-radius: 15px;
+  width: 300px;
+  overflow: hidden;
+`;
+
+const OrgPageWrapper = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 `;
