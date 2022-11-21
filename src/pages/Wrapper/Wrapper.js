@@ -6,7 +6,7 @@ const Wrapper = (props) => {
   return (
     <>
       <InnerNav />
-      <Content>{props.children}</Content>
+      <Content pathname={props.location.pathname}>{props.children}</Content>
     </>
   );
 };
@@ -15,7 +15,7 @@ export default withRouter(Wrapper);
 
 const Content = styled.div`
   position: fixed;
-  top: 56px;
+  top: ${({ pathname }) => (pathname === "/home" ? 183 : 130)}px;
   left: 0px;
   right: 0px;
   bottom: 0;
