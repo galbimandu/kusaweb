@@ -53,24 +53,25 @@ const Logo = styled.div`
 
   background: black;
   border-radius: 40px;
-  margin-bottom: 6%;
+  margin-bottom: 10%;
 `;
 
 const SubmitBtn = styled(SubmitButton)`
   margin-top: 5%;
   width: 85%;
   margin-bottom: 3%;
-  height: 8%;
+  height: 35px;
 `;
 
 const SubmitBtnBlack = styled(SubmitButtonBlack)`
   width: 85%;
   margin-bottom: 5%;
-  height: 8%;
+  height: 35px;
 `;
 
 const Head = styled.h1`
-  margin-bottom: 2%;
+  height: 30px;
+  margin-bottom: 40px;
   font-family: "Spartan";
   font-style: normal;
 
@@ -99,7 +100,7 @@ const InputContainer = styled.div`
 
 const InputBox = styled(Input)`
   width: 85%;
-  height: 7%;
+  height: 35px;
   margin-bottom: 5%;
   box-sizing: border-box;
 

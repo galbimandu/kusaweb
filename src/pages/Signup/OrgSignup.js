@@ -64,20 +64,20 @@ const OrgSignup = () => {
 export default OrgSignup;
 
 const SubmitBtn = styled(SubmitButton)`
-  margin-top: 10px;
+  margin-top: 15%;
   width: 85%;
   margin-bottom: 5%;
-  height: 6%;
+  height: 35px;
 `;
 
 const SubmitBtnBlack = styled(SubmitButtonBlack)`
   width: 85%;
   margin-bottom: 10px;
-  height: 6%;
+  height: 35px;
 `;
 
 const Head = styled.h1`
-  margin-bottom: 10%;
+  margin-bottom: 20%;
   font-family: "Spartan";
   font-style: normal;
 
@@ -98,7 +98,7 @@ const InputContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 450px;
+  width: 400px;
   height: 500px;
   background: #f8f7f5;
   border-radius: 10px;
@@ -106,8 +106,8 @@ const InputContainer = styled.div`
 
 const InputBox = styled(Input)`
   width: 85%;
-  height: 10%;
-  margin-bottom: 10%;
+  height: 35px;
+  margin-bottom: 6%;
   box-sizing: border-box;
 
   /* Auto layout */

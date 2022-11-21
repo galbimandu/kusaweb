@@ -96,25 +96,24 @@ const SelectBox = styled(Select)`
 `;
 
 const Option = styled(Select.Option)`
-  height: 50px;
+  height: 35px;
 `;
 
 const SubmitBtn = styled(SubmitButton)`
-  margin-top: 10px;
+  margin-top: 25%;
   width: 85%;
   margin-bottom: 5%;
-  height: 6%;
+  height: 35px;
 `;
 
 const SubmitBtnBlack = styled(SubmitButtonBlack)`
   width: 85%;
-  margin-bottom: 10px;
-  height: 6%;
+  height: 35px;
 `;
 
 const Head = styled.h1`
   margin-top: 5%;
-  margin-bottom: 20%;
+  margin-bottom: 25%;
   font-family: "Spartan";
   font-style: normal;
 
@@ -143,7 +142,7 @@ const InputContainer = styled.div`
 
 const InputBox = styled(Input)`
   width: 85%;
-  height: 6%;
+  height: 35px;
   margin-bottom: 6%;
   box-sizing: border-box;
 
