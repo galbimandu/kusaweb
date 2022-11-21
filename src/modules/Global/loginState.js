@@ -4,7 +4,7 @@ const TOGGLE = "loginState/TOGGLE";
 
 export const changeLoginState = createAction(TOGGLE);
 
-const initialState = false;
+const initialState = true;
 
 const loginState = handleActions(
   {

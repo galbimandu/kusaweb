@@ -46,7 +46,7 @@ const InnerNav = (props) => {
   );
 
   const handlePageChange = (path) => {
-    history.push(`/home${path.length > 0 ? `/${path}` : ""}`);
+    history.push(`/${path}`);
   };
 
   return (
@@ -54,7 +54,7 @@ const InnerNav = (props) => {
       <TopContainer>
         <LeftContainer></LeftContainer>
         <RightContainer>
-          <PageNavigator onClick={() => handlePageChange("")}>
+          <PageNavigator onClick={() => handlePageChange("home")}>
             Home
           </PageNavigator>
           <PageNavigator onClick={() => handlePageChange("aboutus")}>
@@ -87,7 +87,7 @@ const InnerNav = (props) => {
       </TopContainer>
       <BottomContainer>
         <LogoContainer>
-          <KusaLogo onClick={() => handlePageChange("")} />
+          <KusaLogo onClick={() => handlePageChange("home")} />
         </LogoContainer>
         {props.location.pathname === "/home" && (
           <LogoTextContainer>
@@ -106,7 +106,7 @@ const LogoContainer = styled.div`
 `;
 
 const LogoTextContainer = styled.div`
-  margin-top: 41px;
+  margin-top: 21px;
 `;
 
 const PageNavigator = styled.div`
@@ -143,7 +143,6 @@ const BottomContainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 76px;
   width: 100%;
 `;
 
