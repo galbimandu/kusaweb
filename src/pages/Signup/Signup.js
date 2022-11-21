@@ -24,11 +24,11 @@ const Signup = () => {
   };
 
   const handleHaveAccount = () => {
-    history.push("/home/login");
+    history.push("/login");
   };
 
   const handleOrgSignup = () => {
-    history.push("/home/orgsignup");
+    history.push("/orgsignup");
   };
 
   const onSignup = () => {
@@ -91,9 +91,9 @@ const Signup = () => {
 export default Signup;
 
 const OrgBtn = styled(SubmitButton)`
-  margin-top: 3%;
+  margin-top: 5px;
   background: #f8f7ef;
-  width: (400 * 0.85) px;
+  width: 400px;
   height: 35px;
 `;
 
@@ -131,6 +131,7 @@ const Head = styled.h1`
 
 const PageBorder = styled.div`
   display: flex;
+  flex-direction: column;
   width: 100%;
   height: 100%;
   justify-content: center;
@@ -142,7 +143,7 @@ const InputContainer = styled.div`
   justify-content: center;
   align-items: center;
   width: 400px;
-  height: 700px;
+  height: 650px;
   background: #f8f7f5;
   border-radius: 10px;
 `;
