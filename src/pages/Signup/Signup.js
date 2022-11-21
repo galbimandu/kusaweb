@@ -7,7 +7,7 @@ const Signup = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [major, setMajor] = useState("");
-  const [DOB, setDOB] = useState("");
+  const [phone, setPhone] = useState("");
   const [standing, setStanding] = useState("");
   const [ok, setOk] = useState(true);
 
@@ -19,12 +19,16 @@ const Signup = () => {
       return false;
     }
     return (
-      name != "" && email != "" && major != "" && DOB != "" && standing != ""
+      name != "" && email != "" && major != "" && phone != "" && standing != ""
     );
   };
 
   const handleHaveAccount = () => {
     history.push("/home/login");
+  };
+
+  const handleOrgSignup = () => {
+    history.push("/home/orgsignup");
   };
 
   const onSignup = () => {
@@ -40,35 +44,30 @@ const Signup = () => {
     <PageBorder>
       <InputContainer>
         <Head>Sign Up</Head>
-
         <InputBox
           placeholder="Name"
           type="name"
           value={name}
           onChange={(e) => setName(e.target.value)}
         ></InputBox>
-
         <InputBox
           placeholder="WISC Email"
           type="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         ></InputBox>
-
         <InputBox
           placeholder="Major"
           type="major"
           value={major}
           onChange={(e) => setMajor(e.target.value)}
         ></InputBox>
-
         <InputBox
-          placeholder="Date of Birth"
-          type="DOB"
-          value={DOB}
-          onChange={(e) => setDOB(e.target.value)}
+          placeholder="Phone Number"
+          type="Phone"
+          value={phone}
+          onChange={(e) => setPhone(e.target.value)}
         ></InputBox>
-
         <SelectBox
           placeholder="Choose your standing"
           onSelect={(value) => setStanding(value)}
@@ -84,11 +83,19 @@ const Signup = () => {
         </SubmitBtnBlack>
         {!ok && <div>please fill out the form</div>}
       </InputContainer>
+      <OrgBtn onClick={handleOrgSignup}>Sign up for Organization</OrgBtn>
     </PageBorder>
   );
 };
 
 export default Signup;
+
+const OrgBtn = styled(SubmitButton)`
+  margin-top: 3%;
+  background: #f8f7ef;
+  width: (400 * 0.85) px;
+  height: 35px;
+`;
 
 const SelectBox = styled(Select)`
   margin-bottom: 10px;
