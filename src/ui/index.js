@@ -1,4 +1,6 @@
-export { Button } from "./Atoms/Button";
+export { Button } from "./Atoms/Buttons/Button";
+export { SubmitButton } from "./Atoms/Buttons/SubmitButton";
+export { SubmitButtonBlack } from "./Atoms/Buttons/SubmitButtonBlack";
 export { Input } from "./Atoms/Input";
 export { Select } from "./Atoms/Select";
 export { Avatar } from "./Atoms/Avatar";
