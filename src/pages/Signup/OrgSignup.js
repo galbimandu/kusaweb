@@ -22,6 +22,11 @@ const OrgSignup = () => {
       setOk(false);
     }
   };
+
+  const handleUserSignup = () => {
+    history.push("/home/signup");
+  };
+
   const handleHaveAccount = () => {
     history.push("/home/login");
   };
@@ -57,11 +62,19 @@ const OrgSignup = () => {
         </SubmitBtnBlack>
         {!ok && <div>please fill out the form</div>}
       </InputContainer>
+      <OrgBtn onClick={handleUserSignup}>Student Signup</OrgBtn>
     </PageBorder>
   );
 };
 
 export default OrgSignup;
+
+const OrgBtn = styled(SubmitButton)`
+  margin-top: 3%;
+  background: #f8f7ef;
+  width: (400 * 0.85) px;
+  height: 35px;
+`;
 
 const SubmitBtn = styled(SubmitButton)`
   margin-top: 15%;
