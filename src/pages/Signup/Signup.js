@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled, { ThemeContext } from "styled-components";
-import { Input, Button, Select } from "ui";
+import { Input, SubmitButton, SubmitButtonBlack, Select } from "ui";
 import { useHistory } from "react-router-dom";
 
 const Signup = () => {
@@ -23,6 +23,10 @@ const Signup = () => {
     );
   };
 
+  const handleHaveAccount = () => {
+    history.push("/home/login");
+  };
+
   const onSignup = () => {
     if (check()) {
       console.log("nice");
@@ -35,39 +39,36 @@ const Signup = () => {
   return (
     <PageBorder>
       <InputContainer>
-        <Head>Sign Up Page</Head>
-        <InputLine>
-          <InputBox
-            placeholder="Name"
-            type="name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-          ></InputBox>
-        </InputLine>
-        <InputLine>
-          <InputBox
-            placeholder="WISC Email"
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          ></InputBox>
-        </InputLine>
-        <InputLine>
-          <InputBox
-            placeholder="Major"
-            type="major"
-            value={major}
-            onChange={(e) => setMajor(e.target.value)}
-          ></InputBox>
-        </InputLine>
-        <InputLine>
-          <InputBox
-            placeholder="Date of Birth"
-            type="DOB"
-            value={DOB}
-            onChange={(e) => setDOB(e.target.value)}
-          ></InputBox>
-        </InputLine>
+        <Head>Sign Up</Head>
+
+        <InputBox
+          placeholder="Name"
+          type="name"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+        ></InputBox>
+
+        <InputBox
+          placeholder="WISC Email"
+          type="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        ></InputBox>
+
+        <InputBox
+          placeholder="Major"
+          type="major"
+          value={major}
+          onChange={(e) => setMajor(e.target.value)}
+        ></InputBox>
+
+        <InputBox
+          placeholder="Date of Birth"
+          type="DOB"
+          value={DOB}
+          onChange={(e) => setDOB(e.target.value)}
+        ></InputBox>
+
         <SelectBox
           placeholder="Choose your standing"
           onSelect={(value) => setStanding(value)}
@@ -78,6 +79,9 @@ const Signup = () => {
           <Option value="Senior">Senior</Option>
         </SelectBox>
         <SubmitBtn onClick={onSignup}>Sign Up!</SubmitBtn>
+        <SubmitBtnBlack onClick={handleHaveAccount}>
+          Already have an account?
+        </SubmitBtnBlack>
         {!ok && <div>please fill out the form</div>}
       </InputContainer>
     </PageBorder>
@@ -87,22 +91,35 @@ const Signup = () => {
 export default Signup;
 
 const SelectBox = styled(Select)`
-  width: 100%;
+  margin-bottom: 10px;
+  width: 85%;
 `;
 
 const Option = styled(Select.Option)`
-  height: 50px;
+  height: 35px;
 `;
 
-const SubmitBtn = styled(Button)`
-  display: inline;
-  margin-top: 20px;
-  width: 100%;
+const SubmitBtn = styled(SubmitButton)`
+  margin-top: 25%;
+  width: 85%;
+  margin-bottom: 5%;
+  height: 35px;
 `;
 
-const Head = styled.h2`
-  margin-bottom: 30px;
-  font-size: 3em;
+const SubmitBtnBlack = styled(SubmitButtonBlack)`
+  width: 85%;
+  height: 35px;
+`;
+
+const Head = styled.h1`
+  margin-top: 5%;
+  margin-bottom: 25%;
+  font-family: "Spartan";
+  font-style: normal;
+
+  text-align: center;
+
+  color: #1a1a1a;
 `;
 
 const PageBorder = styled.div`
@@ -115,25 +132,31 @@ const PageBorder = styled.div`
 const InputContainer = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
-`;
-const InputLine = styled.div`
-  width: 500px;
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 10px;
+  width: 400px;
+  height: 700px;
+  background: #f8f7f5;
+  border-radius: 10px;
 `;
 
 const InputBox = styled(Input)`
+  width: 85%;
+  height: 35px;
+  margin-bottom: 6%;
+  box-sizing: border-box;
+
+  /* Auto layout */
+
   display: flex;
-  padding-left: 20px;
-  width: 100%;
-  height: 50px;
-  font-size: ${({ theme }) => theme.fontSizes.txt_small};
-  /* border: 1px solid rgb(192, 192, 192); */
-  border: 1px solid ${({ theme }) => theme.colors.color_base_darker};
-  line-height: 1.2;
-  box-shadow: none;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 10px;
+  gap: 10px;
+
+  background: #ffffff;
+  border: 1px solid #e4e4e4;
+  border-radius: 10px;
 
   &:hover {
     border-color: ${({ theme }) => theme.colors.color_text_light} !important;
