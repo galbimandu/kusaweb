@@ -2,17 +2,21 @@ import React, { useState } from "react";
 import styled, { ThemeContext } from "styled-components";
 import { Input, SubmitButton, SubmitButtonBlack, Select } from "ui";
 import { useHistory } from "react-router-dom";
+import { useMajors } from "../../apicache/defaultQueries";
 
 const Signup = () => {
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
-  const [major, setMajor] = useState("");
+  const [major, setMajor] = useState([]);
   const [phone, setPhone] = useState("");
   const [standing, setStanding] = useState("");
   const [ok, setOk] = useState(true);
 
   const history = useHistory();
+
+  const majorList = useMajors();
+  console.log(majorList);
 
   const check = () => {
     if (!email.includes("@wisc.edu")) {
@@ -23,7 +27,7 @@ const Signup = () => {
       name !== "" &&
       password !== "" &&
       email !== "" &&
-      major !== "" &&
+      major.length !== 0 &&
       phone !== "" &&
       standing !== ""
     );
@@ -44,6 +48,11 @@ const Signup = () => {
     } else {
       setOk(false);
     }
+  };
+  const handleMajorSelection = (value) => {
+    let temp = [...major];
+    temp.push(value);
+    setMajor(temp);
   };
 
   return (
@@ -68,12 +77,30 @@ const Signup = () => {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         ></InputBox>
-        <InputBox
-          placeholder="Major"
-          type="major"
-          value={major}
-          onChange={(e) => setMajor(e.target.value)}
-        ></InputBox>
+        <Select
+          mode="multiple"
+          style={{
+            width: "100%",
+          }}
+          placeholder="select one country"
+          defaultValue={major}
+          onChange={handleMajorSelection}
+          optionLabelProp="label"
+        >
+          {majorList.map((m) => (
+            <Option value={m} label={m}>
+              {m}
+            </Option>
+          ))}
+          <Option value="china" label="China">
+            <div className="demo-option-label-item">
+              <span role="img" aria-label="China">
+                🇨🇳
+              </span>
+              China (中国)
+            </div>
+          </Option>
+        </Select>
         <InputBox
           placeholder="Phone Number"
           type="Phone"

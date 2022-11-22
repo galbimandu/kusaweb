@@ -105,7 +105,3 @@ const PageBorder = styled.div`
   justify-content: center;
   margin-bottom: 250px;
 `;
-
-// const BoardMemberBlock = styled.div`
-
-// `;
