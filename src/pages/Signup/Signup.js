@@ -5,32 +5,31 @@ import { useHistory } from "react-router-dom";
 import { useMajors } from "apicache";
 
 const Signup = () => {
-  const [name, setName] = useState("");
-  const [password, setPassword] = useState("");
-  const [email, setEmail] = useState("");
-  const [major, setMajor] = useState([]);
-  const [phone, setPhone] = useState("");
-  const [standing, setStanding] = useState("");
-  const [ok, setOk] = useState(true);
+  const [userName, setUserName] = useState("");
+  const [userPassword, setUserPassword] = useState("");
+  const [wiscEmail, setWiscEmail] = useState("");
+  const [userMajors, setUserMajors] = useState([]);
+  const [userKakaoId, setUserKakaoId] = useState("");
+  const [userPhoneNumber, setUserPhoneNumber] = useState("");
+  const [userStanding, setUserStanding] = useState("");
+  const [filledAllReq, setFilledAllReq] = useState(true);
 
   const history = useHistory();
-  const tmp = useMajors();
-  console.log(tmp);
-  // const { data: majorList } = useMajors();
-  // console.log(majorList);
-  const majorList = [];
+  const { data: majorList } = useMajors();
+  console.log(majorList);
+
   const check = () => {
-    if (!email.includes("@wisc.edu")) {
+    if (!wiscEmail.includes("@wisc.edu")) {
       window.alert("Please input valid WISC EMAIL");
       return false;
     }
     return (
-      name !== "" &&
-      password !== "" &&
-      email !== "" &&
-      major.length !== 0 &&
-      phone !== "" &&
-      standing !== ""
+      userName !== "" &&
+      userPassword !== "" &&
+      wiscEmail !== "" &&
+      userMajors.length !== 0 &&
+      userPhoneNumber !== "" &&
+      userStanding !== ""
     );
   };
 
@@ -47,14 +46,21 @@ const Signup = () => {
       console.log("nice");
       history.push("/home");
     } else {
-      setOk(false);
+      setFilledAllReq(false);
     }
   };
   const handleMajorSelection = (value) => {
-    let temp = [...major];
+    let temp = [...userMajors];
     temp.push(value);
-    setMajor(temp);
+    setUserMajors(temp);
   };
+
+  const generateOptions = () =>
+    majorList.map((major) => (
+      <Option key={major.id} value={major.name} label={major.name}>
+        {major.name}
+      </Option>
+    ));
 
   return (
     <PageBorder>
@@ -63,60 +69,52 @@ const Signup = () => {
         <InputBox
           placeholder="Name"
           type="name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
+          value={userName}
+          onChange={(e) => setUserName(e.target.value)}
         ></InputBox>
         <InputBox
           placeholder="Password"
           type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
+          value={userPassword}
+          onChange={(e) => setUserPassword(e.target.value)}
         ></InputBox>
         <InputBox
           placeholder="WISC Email"
           type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          value={wiscEmail}
+          onChange={(e) => setWiscEmail(e.target.value)}
         ></InputBox>
-        <Select
-          mode="multiple"
-          style={{
-            width: "100%",
-          }}
-          placeholder="select one country"
-          defaultValue={major}
-          onChange={handleMajorSelection}
-          optionLabelProp="label"
-        >
-          {majorList.map((m) => (
-            <Option value={m} label={m}>
-              {m}
-            </Option>
-          ))}
-          <Option value="china" label="China">
-            <div className="demo-option-label-item">
-              <span role="img" aria-label="China">
-                🇨🇳
-              </span>
-              China (中国)
-            </div>
-          </Option>
-        </Select>
+        <InputBox
+          placeholder="KakaoTalk ID"
+          type="KakaoId"
+          value={userKakaoId}
+          onChange={(e) => setUserKakaoId(e.target.value)}
+        ></InputBox>
         <InputBox
           placeholder="Phone Number"
           type="Phone"
-          value={phone}
-          onChange={(e) => setPhone(e.target.value)}
+          value={userPhoneNumber}
+          onChange={(e) => setUserPhoneNumber(e.target.value)}
         ></InputBox>
         <SelectBox
+          mode="multiple"
+          placeholder="Select your majors please"
+          defaultValue={userMajors}
+          onChange={handleMajorSelection}
+          optionLabelProp="label"
+        >
+          {generateOptions()}
+        </SelectBox>
+        <SelectBox
           placeholder="Choose your standing"
-          onSelect={(value) => setStanding(value)}
+          onSelect={(value) => setUserStanding(value)}
         >
           <Option value="Freshman">Freshman</Option>
           <Option value="Sophomore">Sophomore</Option>
           <Option value="Junior">Junior</Option>
           <Option value="Senior">Senior</Option>
         </SelectBox>
+        {<div>{!filledAllReq && <div>please fill out the form</div>}</div>}
         <OrgSignup onClick={handleOrgSignup}>
           Sign up for Organization?
         </OrgSignup>
@@ -124,7 +122,6 @@ const Signup = () => {
         <SubmitBtnBlack onClick={handleHaveAccount}>
           Already have an account?
         </SubmitBtnBlack>
-        {!ok && <div>please fill out the form</div>}
       </InputContainer>
     </PageBorder>
   );
@@ -133,12 +130,15 @@ const Signup = () => {
 export default Signup;
 
 const SelectBox = styled(Select)`
-  margin-bottom: 10px;
+  margin-bottom: 6%;
   width: 85%;
+  border-radius: 10px;
 `;
 
 const Option = styled(Select.Option)`
-  height: 35px;
+  height: 40px;
+  width: 85%;
+  padding-left: 3px;
 `;
 
 const SubmitBtn = styled(SubmitButton)`
@@ -174,7 +174,7 @@ const OrgSignup = styled.div`
 
 const Head = styled.h1`
   margin-top: 5%;
-  margin-bottom: 25%;
+  margin-bottom: 15%;
   font-family: "Spartan";
   font-style: normal;
 
