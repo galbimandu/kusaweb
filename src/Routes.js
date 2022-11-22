@@ -32,7 +32,7 @@ const OrgSignup = loadable(() =>
   lazyRetry(() => import("pages/Signup/OrgSignup"))
 );
 const Detail = loadable(() =>
-  lazyRetry(() => import("pages/Organization/Detail"))
+  lazyRetry(() => import("pages/Organization/OrganizationDescription"))
 );
 
 const Organization = loadable(() =>

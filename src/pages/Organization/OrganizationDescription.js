@@ -13,7 +13,7 @@ const userProfile = {
   standing: "Senior",
 };
 
-const Detail = ({
+const OrganizationDescription = ({
   match: {
     params: { id: orgID },
   },
@@ -62,7 +62,7 @@ const Detail = ({
   );
 };
 
-export default Detail;
+export default OrganizationDescription;
 
 const Block = styled.div`
   width: 1100px;
