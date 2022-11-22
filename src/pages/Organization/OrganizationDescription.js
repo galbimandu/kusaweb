@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import styled, { ThemeContext } from "styled-components";
-// import { createBoardMember } from "apicache";
 
 const orgData = {
   name: "Unikists",
@@ -32,6 +31,7 @@ const OrganizationDescription = ({
             alt="cover"
             src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
             style={{ width: 300, height: 300 }}
+            onClick={onSignUp}
           />
         }
       </LogoBlock>
@@ -105,7 +105,3 @@ const PageBorder = styled.div`
   justify-content: center;
   margin-bottom: 250px;
 `;
-
-// const BoardMemberBlock = styled.div`
-
-// `;

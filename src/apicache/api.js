@@ -270,7 +270,7 @@ export async function getUserMajorsById(id) {
   for (var key in major_res.data) {
     majors.push(major_res.data[key].name);
   }
-  return majors;
+  return { data: majors };
 }
 
 export async function getUserOrgById(id) {

@@ -1,0 +1,1 @@
+export { useMajors } from "./useMajors";
