@@ -5,6 +5,15 @@ import { useHistory } from "react-router-dom";
 import unikists from "images/logo/unikists-cropped.png";
 import ksea from "images/logo/KSEA.svg";
 import unikistsbg from "images/background/unikists.JPG";
+import badger from "images/logo/badger.svg";
+import kcu from "images/background/kcu.png";
+import kesl from "images/logo/kesl.png";
+import kic from "images/logo/kic.png";
+import kesa from "images/logo/kesa.png";
+import kbsa from "images/logo/kbsa.png";
+import madk from "images/logo/madk.png";
+import kuha from "images/logo/kuha.png";
+
 const OrganizationList = () => {
   const history = useHistory();
   const orgData = [
@@ -13,7 +22,7 @@ const OrganizationList = () => {
       abrv: "KCU",
       fullname: "Korean Undergraduate Computer Science Union",
       description: "한인 최고의 프로젝트 동아리",
-      avatar: "https://joeschmoe.io/api/v1/random",
+      avatar: kcu,
       cover: "https://picsum.photos/300/182",
     },
     {
@@ -36,7 +45,7 @@ const OrganizationList = () => {
       abrv: "KESL",
       fullname: "Korean E-Sports Legacy",
       description: "한인 게임 동아리",
-      avatar: "https://joeschmoe.io/api/v1/random",
+      avatar: kesl,
       cover: "https://picsum.photos/300/182",
     },
     {
@@ -44,7 +53,7 @@ const OrganizationList = () => {
       abrv: "KIC",
       fullname: "KIC",
       description: "한인 주식 동아리",
-      avatar: "https://joeschmoe.io/api/v1/random",
+      avatar: kic,
       cover: "https://picsum.photos/300/182",
     },
     {
@@ -52,7 +61,7 @@ const OrganizationList = () => {
       abrv: "KESA",
       fullname: "KESA",
       description: "Organization for Economics",
-      avatar: "https://joeschmoe.io/api/v1/random",
+      avatar: kesa,
       cover: "https://picsum.photos/300/182",
     },
     {
@@ -60,7 +69,7 @@ const OrganizationList = () => {
       abrv: "KBSA",
       fullname: "KBSA",
       description: "Organization for Business",
-      avatar: "https://joeschmoe.io/api/v1/random",
+      avatar: kbsa,
       cover: "https://picsum.photos/300/182",
     },
     {
@@ -68,7 +77,7 @@ const OrganizationList = () => {
       abrv: "MAD-K",
       fullname: "MAD-K",
       description: "한인 축구 동아리",
-      avatar: "https://joeschmoe.io/api/v1/random",
+      avatar: madk,
       cover: "https://picsum.photos/300/182",
     },
     {
@@ -76,7 +85,7 @@ const OrganizationList = () => {
       abrv: "KUHA",
       fullname: "Korean Undergraduates Health Association",
       description: "한인 최고의 헬스 동아리",
-      avatar: "https://joeschmoe.io/api/v1/random",
+      avatar: kuha,
       cover: "https://picsum.photos/300/182",
     },
     {
@@ -84,7 +93,7 @@ const OrganizationList = () => {
       abrv: "EXMP",
       fullname: "EXAMPLE FULL NAME",
       description: "Brief Description of Organization.",
-      avatar: "https://joeschmoe.io/api/v1/random",
+      avatar: badger,
       cover: "https://picsum.photos/300/182",
     },
   ];
