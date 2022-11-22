@@ -1,22 +1,111 @@
 import { supabase } from "../supabaseClient";
 
 export const userAPIs = {
-  getLoggedInUserInfo,
   updateUser,
-  getUserInfo,
-  getUserMajorsById,
+  /*
+  {
+    "id": "11111-11111-11111-11111",
+    "korean_name": "수박",
+    "wisc_email": "park@wisc.edu",
+    "kakaotalk_id": "parkid",
+    "phone_number": "010-0101-0101",
+    "standing": "senior",
+    "wisc_id": "park",
+    "img_url": null,
+    "created_at": "2022-11-22T06:47:56.704886",
+    "majors": ["Animal Sciences BS"],
+    "orgs": [
+      {
+        "id": 1,
+        "full_name": "very nice club",
+        "short_name": "nice",
+        "notion_link": null,
+        "description": null,
+        "short_description": null,
+        "email": null,
+        "kakaotalk_id": null,
+        "phone_number": null,
+        "logo_url": null,
+        "bg_url": null,
+        "created_at": "2022-11-22T06:48:15.916203"
+      }
+    ],
+    "board_orgs": [
+      {
+        "id": 1,
+        "full_name": "very nice club",
+        "short_name": "nice",
+        "notion_link": null,
+        "description": null,
+        "short_description": null,
+        "email": null,
+        "kakaotalk_id": null,
+        "phone_number": null,
+        "logo_url": null,
+        "bg_url": null,
+        "created_at": "2022-11-22T06:48:15.916203"
+      }
+    ]
+  }
+  */
+  getLoggedInUserInfo,
+  /*
+  data = {
+    user_id: user_id (NOT NULL)
+    org_id: org_id (NOT NULL)
+    status: ('pending', 'member', 'board')
+  }
+  */
   createBoardMember,
+  /*
+  data = {
+      user_id:  (NOT NULL)
+      major_id:  (NOT NULL)
+  }
+  */
   createUserMajors,
-  getUserOrgById,
 };
 
 export const orgAPIs = {
   createOrg,
   updateOrg,
+  /*
+  {
+    "data":
+    [
+      {
+      "id": 1,
+      "full_name": "very nice club",
+      "short_name": "nice",
+      "notion_link": null,
+      "description": null,
+      "short_description": null,
+      "email": null,
+      "kakaotalk_id": null,
+      "phone_number": null,
+      "logo_url": null,
+      "bg_url": null,
+      "created_at": "2022-11-22T06:48:15.916203"
+      },
+    ]
+  }
+  */
   getOrgs,
 };
 
 export const metainfoAPIs = {
+  /*
+  {
+    "data": [
+      { "id": 1, "name": "Accounting Certificate" },
+      { "id": 2, "name": "African Cultural Studies BA" },
+      { "id": 3, "name": "African Cultural Studies BS" },
+      { "id": 4, "name": "African Studies Certificate" },
+      { "id": 5, "name": "Afro-American Studies BA" },
+      ...
+    ]
+  }
+  */
   getMajors,
 };
 
@@ -26,6 +115,17 @@ export const loginAPIs = {
 };
 
 export const eventAPIs = {
+  /*
+  data = {
+    name str, (NOT NULL)
+    date DATE, (NOT NULL)
+    signup_link str,
+    description str,
+    location" str,
+    org_id int, (NOT NULL)
+    is_weekly boolean
+  }
+  */
   createEvent,
   updateEvent,
   getEvents,
@@ -66,55 +166,9 @@ export async function updateOrg(name, data) {
 }
 
 export async function getOrgs(query = undefined) {
-  /*
-    {
-    "data": [
-        {
-        "id": 1,
-        "full_name": "very nice club",
-        "short_name": "nice",
-        "notion_link": null,
-        "description": null,
-        "short_description": null,
-        "email": null,
-        "kakaotalk_id": null,
-        "phone_number": null,
-        "logo_url": null,
-        "bg_url": null,
-        "created_at": "2022-11-22T06:48:15.916203"
-        },
-        {
-        "id": 2,
-        "full_name": "unikists",
-        "short_name": "unikists",
-        "notion_link": null,
-        "description": null,
-        "short_description": null,
-        "email": null,
-        "kakaotalk_id": null,
-        "phone_number": null,
-        "logo_url": null,
-        "bg_url": null,
-        "created_at": "2022-11-22T07:29:02.786603"
-        }
-        ]
-    }
-    */
   return getTable("organizations", query);
 }
 
-/*
-{
-  "data": [
-    { "id": 1, "name": "Accounting Certificate" },
-    { "id": 2, "name": "African Cultural Studies BA" },
-    { "id": 3, "name": "African Cultural Studies BS" },
-    { "id": 4, "name": "African Studies Certificate" },
-    { "id": 5, "name": "Afro-American Studies BA" },
-    ...
-  ]
-}
-*/
 export async function getMajors() {
   return getTable("majors");
 }
@@ -158,17 +212,6 @@ export async function signIn(email, password) {
 }
 
 export async function createEvent(data) {
-  /*
-      data = {
-          name str, (NOT NULL)
-          date DATE, (NOT NULL)
-          signup_link str,
-          description str,
-          location" str,
-          org_id int, (NOT NULL)
-          is_weekly boolean
-      }
-      */
   return insertTable("events", data);
 }
 
@@ -179,13 +222,6 @@ export async function getEvents(query = undefined) {
 }
 
 export async function createBoardMember(data) {
-  /*
-      data = {
-          user_id: user_id (NOT NULL)
-          org_id: org_id (NOT NULL)
-          status: ('pending', 'member', 'board')
-      }
-      */
   return insertTable("org_users", data);
 }
 
@@ -194,12 +230,6 @@ export async function getBoardMembers(query = undefined) {
 }
 
 export async function createUserMajors(data) {
-  /*
-    data = {
-        user_id:  (NOT NULL)
-        major_id:  (NOT NULL)
-    }
-    */
   return insertTable("user_majors", data);
 }
 
@@ -215,9 +245,6 @@ export async function getOrgMajors(query = undefined) {
   return getTable("org_majors", (query = undefined));
 }
 
-/*
-["Animal Sciences BS", "Computer Science BA"]
-*/
 export async function getUserMajorsById(id) {
   const res_user_majors = await supabase
     .from("user_majors")
@@ -246,24 +273,6 @@ export async function getUserMajorsById(id) {
   return majors;
 }
 
-/*
-[
-    {
-      "id": 1,
-      "full_name": "very nice club",
-      "short_name": "nice",
-      "notion_link": null,
-      "description": null,
-      "short_description": null,
-      "email": null,
-      "kakaotalk_id": null,
-      "phone_number": null,
-      "logo_url": null,
-      "bg_url": null,
-      "created_at": "2022-11-22T06:48:15.916203"
-    }
-  ]
-*/
 export async function getUserOrgById(id) {
   const res_org_users = await supabase
     .from("org_users")
@@ -292,24 +301,6 @@ export async function getUserOrgById(id) {
   return orgs;
 }
 
-/*
-[
-    {
-      "id": 1,
-      "full_name": "very nice club",
-      "short_name": "nice",
-      "notion_link": null,
-      "description": null,
-      "short_description": null,
-      "email": null,
-      "kakaotalk_id": null,
-      "phone_number": null,
-      "logo_url": null,
-      "bg_url": null,
-      "created_at": "2022-11-22T06:48:15.916203"
-    }
-  ]
-*/
 export async function getBoardOrgById(id) {
   const res_org_users = await supabase
     .from("org_users")
@@ -338,53 +329,6 @@ export async function getBoardOrgById(id) {
   return orgs;
 }
 
-// majors, orgs,
-/*
-{
-  "id": "11111-11111-11111-11111",
-  "korean_name": "수박",
-  "wisc_email": "park@wisc.edu",
-  "kakaotalk_id": "parkid",
-  "phone_number": "010-0101-0101",
-  "standing": "senior",
-  "wisc_id": "park",
-  "img_url": null,
-  "created_at": "2022-11-22T06:47:56.704886",
-  "majors": ["Animal Sciences BS"],
-  "orgs": [
-    {
-      "id": 1,
-      "full_name": "very nice club",
-      "short_name": "nice",
-      "notion_link": null,
-      "description": null,
-      "short_description": null,
-      "email": null,
-      "kakaotalk_id": null,
-      "phone_number": null,
-      "logo_url": null,
-      "bg_url": null,
-      "created_at": "2022-11-22T06:48:15.916203"
-    }
-  ],
-  "board_orgs": [
-    {
-      "id": 1,
-      "full_name": "very nice club",
-      "short_name": "nice",
-      "notion_link": null,
-      "description": null,
-      "short_description": null,
-      "email": null,
-      "kakaotalk_id": null,
-      "phone_number": null,
-      "logo_url": null,
-      "bg_url": null,
-      "created_at": "2022-11-22T06:48:15.916203"
-    }
-  ]
-}
-*/
 export async function getUserInfo(id) {
   const { data, error } = await supabase.from("users").select().eq("id", id);
   if (error) {
@@ -394,33 +338,18 @@ export async function getUserInfo(id) {
   info.majors = await getUserMajorsById(id).then((result) => result);
   info.orgs = await getUserOrgById(id).then((result) => result);
   info.board_orgs = await getBoardOrgById(id).then((result) => result);
-  return info;
+  return { data: info };
 }
 
 export async function updateUser(id, data) {
   return updateTable("users", data, { id: id });
 }
 
-// see getUserInfo
 export async function getLoggedInUserInfo() {
   const res = await supabase.auth.getUser();
   const userData = await getUserInfo(res.data.user.id);
   return userData[0];
 }
-
-// org list: logo, background image, short_name, full name, short_description, id
-
-// org id
-
-// signup: wisc email, korean name, us phone number, pw, personal email, major, student number
-
-// login
-
-// org: signup, edit,
-
-// Events
-
-//
 
 export async function uploadImage(
   file_path,
@@ -457,3 +386,16 @@ export async function uploadUserProfileImage(file_path) {
   const data = uploadImage(file_path, bucket_path, { upsert: true });
   return updateUser(supabase.auth.getUser().id, { img_url: data.path });
 }
+// org list: logo, background image, short_name, full name, short_description, id
+
+// org id
+
+// signup: wisc email, korean name, us phone number, pw, personal email, major, student number
+
+// login
+
+// org: signup, edit,
+
+// Events
+
+//

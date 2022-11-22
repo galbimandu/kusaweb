@@ -12,6 +12,7 @@ import GlobalStyle from "./style/GlobalStyle";
 import { ErrorBoundary } from "react-error-boundary";
 import { ErrorFallback } from "utils/ErrorFallback";
 import lazyRetry from "utils/lazyRetry";
+
 // import { axios } from "common/ApiAxios";
 const queryClient = new QueryClient();
 const NotFound = loadable(() => import("./pages/Errors/NotFound"));
@@ -28,6 +29,9 @@ const Wrapper = loadable(() =>
 const Signup = loadable(() => lazyRetry(() => import("pages/Signup/Signup")));
 const Home = loadable(() => lazyRetry(() => import("pages/Home/Home")));
 const Login = loadable(() => lazyRetry(() => import("pages/Login/Login")));
+const AboutUs = loadable(() =>
+  lazyRetry(() => import("pages/AboutUs/AboutUs"))
+);
 const OrgSignup = loadable(() =>
   lazyRetry(() => import("pages/Signup/OrgSignup"))
 );
@@ -65,6 +69,7 @@ const Routes = () => {
               <Route exact path="/signup" component={Signup} />
               <Route exact path="/orgsignup" component={OrgSignup} />
               <Route exact path="/login" component={Login} />
+              <Route exact path="/aboutus" component={AboutUs} />
               {/* <Route path="/home" component={StructureOuter} />
               <Route path="/" component={StructureInner} /> */}
               <Route exact path="/404" component={NotFound} />

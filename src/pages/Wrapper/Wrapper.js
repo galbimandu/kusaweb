@@ -20,10 +20,11 @@ const PageWrapper = styled.div`
   left: 0;
   right: 0;
   overflow-y: scroll;
+  overflow-x: hidden;
 `;
 
 const Content = styled.div`
-  margin-top: ${({ pathname }) => (pathname === "/home" ? 183 : 130)}px;
+  /* margin-top: ${({ pathname }) => (pathname === "/home" ? 183 : 130)}px; */
   background-color: white;
   /* @media ${({ theme }) => theme.screenSizes.mobile} {
     left: ${({ sidebarIsOpen }) => (sidebarIsOpen ? "52px" : "0")};

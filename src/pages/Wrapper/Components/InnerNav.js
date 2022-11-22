@@ -127,7 +127,7 @@ const InnerNavContainer = styled.div`
   align-items: center;
   padding: 0 16px;
   background-color: ${({ theme }) => theme.colors.color_white};
-  box-shadow: ${({ theme }) => theme.elevations.elevation_medium};
+  /* box-shadow: ${({ theme }) => theme.elevations.elevation_medium}; */
 `;
 
 const TopContainer = styled.div`

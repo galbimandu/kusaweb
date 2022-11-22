@@ -4,19 +4,25 @@ import styled from "styled-components";
 
 const Home = () => {
   return (
-    <div>
+    <HomeWrapper>
       <BannerImg
         alt="uw madison banner"
         src="https://nokammysupkvthqndlsz.supabase.co/storage/v1/object/public/kusaweb-bucket/images/Rectangle%201658.svg?t=2022-11-22T04%3A08%3A25.695Z"
       ></BannerImg>
-    </div>
+    </HomeWrapper>
   );
 };
 
 export default withRouter(Home);
 
+const HomeWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
 const BannerImg = styled.img`
-  margin-top: 75px;
+  margin-top: 35px;
 `;
 
 const ShadowTest = styled.div`
