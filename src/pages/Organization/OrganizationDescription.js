@@ -34,8 +34,12 @@ const OrganizationDescription = ({
         <AvatarBox>
           <img
             alt="avatar"
-            src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
-            style={{ width: 144, height: 144, borderRadius: "50%" }}
+            src="https://nokammysupkvthqndlsz.supabase.co/storage/v1/object/public/kusaweb-bucket/images/KESLprof.png"
+            style={{
+              width: 154,
+              height: 154,
+              padding: 10,
+            }}
           />
         </AvatarBox>
         <MemberDetailBox>
@@ -52,8 +56,8 @@ const OrganizationDescription = ({
         {
           <img
             alt="cover"
-            src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
-            style={{ width: 300, height: 300 }}
+            src="https://nokammysupkvthqndlsz.supabase.co/storage/v1/object/public/kusaweb-bucket/images/KESLprof.png"
+            style={{ width: 310, height: 310, padding: 10 }}
             onClick={onSignUp}
           />
         }
@@ -68,19 +72,27 @@ const OrganizationDescription = ({
         <HorizontalBlock>
           <EventsContainerOuter>
             <EventsContainerInner>
-              <Icon src="@styled-icons/fa-solid/Bell"></Icon>
+              <Icon src="https://nokammysupkvthqndlsz.supabase.co/storage/v1/object/public/kusaweb-bucket/images/bell.png"></Icon>
+
               <AnnouncementElement>
-                <Icon src="@styled-icons/fa-solid/Bell"></Icon>
+                <IconWrapper>
+                  <Icon
+                    small
+                    src="https://nokammysupkvthqndlsz.supabase.co/storage/v1/object/public/kusaweb-bucket/images/pin.png"
+                  ></Icon>
+                </IconWrapper>
                 <TextBox>
                   <HeadBlock>
-                    내생일
+                    회비 안내
                     <DateBox>05/09</DateBox>
                   </HeadBlock>
-                  {<div>아이패드가 갖고 싶네요.</div>}
+                  <div>이번 1월 회비 벤모 @gildongneedscash 로 보내주세요</div>
                 </TextBox>
               </AnnouncementElement>
               <NotificationElement>
-                <Icon src="@styled-icons/fa-solid/Bell"></Icon>
+                <IconWrapper>
+                  <Icon src="https://nokammysupkvthqndlsz.supabase.co/storage/v1/object/public/kusaweb-bucket/images/message.png"></Icon>
+                </IconWrapper>
                 <TextBox>
                   <HeadBlock>
                     1팀 VS 2팀
@@ -94,7 +106,9 @@ const OrganizationDescription = ({
                 </TextBox>
               </NotificationElement>
               <SocialElement>
-                <Icon src="@styled-icons/fa-solid/Bell"></Icon>
+                <IconWrapper>
+                  <Icon src="https://nokammysupkvthqndlsz.supabase.co/storage/v1/object/public/kusaweb-bucket/images/social.png"></Icon>
+                </IconWrapper>
                 <TextBox>
                   <HeadBlock>
                     BOB Social!
@@ -113,7 +127,9 @@ const OrganizationDescription = ({
                 </TextBox>
               </SocialElement>
               <MeetingElement>
-                <Icon src="@styled-icons/fa-solid/Bell"></Icon>
+                <IconWrapper>
+                  <Icon src="https://nokammysupkvthqndlsz.supabase.co/storage/v1/object/public/kusaweb-bucket/images/meeting.png"></Icon>
+                </IconWrapper>
                 <TextBox>
                   <HeadBlock>
                     Board Members Meeting
@@ -194,7 +210,6 @@ const EventElement = styled.div`
   padding-right: 30px;
   display: flex;
   margin-top: 18px;
-  justify-content: space-evenly;
 `;
 
 const NotificationElement = styled(EventElement)`
@@ -228,9 +243,10 @@ const HeadBlock = styled.div`
 const TextBox = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: center;
   width: 320px;
+  margin-left: 20px;
   line-height: 10px;
-  margin-left: 93px;
   font-size: 8px;
 `;
 
@@ -239,20 +255,23 @@ const DateBox = styled.div`
   line-height: 20px;
   font-size: 17px;
 `;
-
-const Icon = styled.img`
+const IconWrapper = styled.div`
   background: #fffaeb;
   border-width: 1px 0px 0px 1px;
   border-style: solid;
-  border-color: #676767;
-  border-radius: 10px;
-  align-items: center;
-  line-height: 55px;
-  width: 50px;
+  border-color: #858585;
+  border-radius: 100%;
+  overflow: hidden;
   height: 50px;
+  width: 50px;
+  display: flex;
+  align-items: center;
   justify-content: center;
 `;
-
+const Icon = styled.img`
+  width: 36px;
+  height: 36px;
+`;
 const Field = styled.div`
   width: 360px;
   height: 360px;
@@ -270,7 +289,6 @@ const Field = styled.div`
 const AvatarBox = styled.div`
   width: 200px;
   height: 200px;
-  margin-block: auto;
 `;
 
 const Block = styled.div`
