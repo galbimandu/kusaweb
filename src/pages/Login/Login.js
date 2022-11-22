@@ -3,6 +3,7 @@ import styled, { ThemeContext } from "styled-components";
 import { Input, SubmitButton, SubmitButtonBlack } from "ui";
 import { useHistory } from "react-router-dom";
 import { Checkbox } from "antd";
+import * as api from "../../apicache/api";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -11,6 +12,7 @@ const Login = () => {
 
   const history = useHistory();
   const onLogin = () => {
+    api.login.signIn(email, password);
     history.push("/home");
   };
   const handleFindPassword = () => {
