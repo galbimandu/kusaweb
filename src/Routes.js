@@ -17,12 +17,6 @@ import lazyRetry from "utils/lazyRetry";
 const queryClient = new QueryClient();
 const NotFound = loadable(() => import("./pages/Errors/NotFound"));
 
-const StructureOuter = loadable(() =>
-  import("pages/StructureOuter/StructureOuter")
-);
-const StructureInner = loadable(() =>
-  import("pages/StructureInner/StructureInner")
-);
 const Wrapper = loadable(() =>
   lazyRetry(() => import("pages/Wrapper/Wrapper"))
 );
@@ -43,6 +37,9 @@ const OrganizationList = loadable(() =>
 );
 const BackendTest = loadable(() =>
   lazyRetry(() => import("pages/BackendTest/BackendTest"))
+);
+const Galbros = loadable(() =>
+  lazyRetry(() => import("pages/Galbros/Galbros"))
 );
 const Routes = () => {
   return (
@@ -76,6 +73,7 @@ const Routes = () => {
               <Route exact path="/organizations" component={OrganizationList} />
               <Route exact path="/backendtest" component={BackendTest} />
               <Route exact path="/organizations/:id" component={Detail} />
+              <Route exact path="/Galbros" component={Galbros} />
             </Wrapper>
           </Switch>
         </ErrorBoundary>
