@@ -96,21 +96,24 @@ const OrganizationList = () => {
   const { Meta } = Card;
 
   return (
-    <OrgPageWrapper>
-      {orgData.map((org) => (
-        <OrgCard
-          cover={<img alt="cover" src={org.cover} height={180} width={300} />}
-          onClick={() => handleOrgCardClick(org)}
-          hoverable={true}
-        >
-          <Meta
-            avatar={<Avatar src={org.avatar} size="large" />}
-            title={org.abrv}
-            description={org.description}
-          />
-        </OrgCard>
-      ))}
-    </OrgPageWrapper>
+    <PageWrapper>
+      <TextBox>Organization Dashboard</TextBox>
+      <OrgCardWrapper>
+        {orgData.map((org) => (
+          <OrgCard
+            cover={<img alt="cover" src={org.cover} height={180} width={300} />}
+            onClick={() => handleOrgCardClick(org)}
+            hoverable={true}
+          >
+            <Meta
+              avatar={<Avatar src={org.avatar} size="large" />}
+              title={org.abrv}
+              description={org.description}
+            />
+          </OrgCard>
+        ))}
+      </OrgCardWrapper>
+    </PageWrapper>
   );
 };
 
@@ -123,8 +126,21 @@ const OrgCard = styled(Card)`
   overflow: hidden;
 `;
 
-const OrgPageWrapper = styled.div`
+const OrgCardWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+`;
+
+const PageWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const TextBox = styled.div`
+  margin: 30px 30px;
+  font-weight: 400;
+  font-size: 30px;
+  line-height: 34px;
 `;
