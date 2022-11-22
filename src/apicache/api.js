@@ -1,4 +1,41 @@
 import { supabase } from "../supabaseClient";
+
+export const userAPIs = {
+  getLoggedInUserInfo,
+  updateUser,
+  getUserInfo,
+  getUserMajorsById,
+  createBoardMember,
+  createUserMajors,
+  getUserOrgById,
+};
+
+export const orgAPIs = {
+  createOrg,
+  updateOrg,
+  getOrgs,
+};
+
+export const metainfoAPIs = {
+  getMajors,
+};
+
+export const loginAPIs = {
+  signUp,
+  signIn,
+};
+
+export const eventAPIs = {
+  createEvent,
+  updateEvent,
+  getEvents,
+};
+
+export const uploadAPIs = {
+  uploadImage,
+  uploadUserProfileImage,
+};
+
 //const fs = require('fs');
 export async function getTable(name, query = undefined) {
   const { data, error } = await supabase.from(name).select(query);
@@ -33,20 +70,10 @@ export async function updateOrg(name, data) {
 export async function getOrgs(query = undefined) {
   return getTable("orgs", query);
 }
-export const organizations = {
-  createOrg,
-  updateOrg,
-  getOrgs,
-};
 
 export async function getMajors() {
   return getTable("majors");
 }
-
-export const login = {
-  signUp,
-  signIn,
-};
 
 export async function signUp(email, password, info) {
   const { korean_name, kakaotalk_id, phone_number, standing } = info;
