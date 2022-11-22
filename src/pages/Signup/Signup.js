@@ -5,6 +5,7 @@ import { useHistory } from "react-router-dom";
 
 const Signup = () => {
   const [name, setName] = useState("");
+  const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const [major, setMajor] = useState("");
   const [phone, setPhone] = useState("");
@@ -19,7 +20,12 @@ const Signup = () => {
       return false;
     }
     return (
-      name != "" && email != "" && major != "" && phone != "" && standing != ""
+      name !== "" &&
+      password !== "" &&
+      email !== "" &&
+      major !== "" &&
+      phone !== "" &&
+      standing !== ""
     );
   };
 
@@ -51,6 +57,12 @@ const Signup = () => {
           onChange={(e) => setName(e.target.value)}
         ></InputBox>
         <InputBox
+          placeholder="Password"
+          type="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        ></InputBox>
+        <InputBox
           placeholder="WISC Email"
           type="email"
           value={email}
@@ -77,25 +89,20 @@ const Signup = () => {
           <Option value="Junior">Junior</Option>
           <Option value="Senior">Senior</Option>
         </SelectBox>
+        <OrgSignup onClick={handleOrgSignup}>
+          Sign up for Organization?
+        </OrgSignup>
         <SubmitBtn onClick={onSignup}>Sign Up!</SubmitBtn>
         <SubmitBtnBlack onClick={handleHaveAccount}>
           Already have an account?
         </SubmitBtnBlack>
         {!ok && <div>please fill out the form</div>}
       </InputContainer>
-      <OrgBtn onClick={handleOrgSignup}>Sign up for Organization</OrgBtn>
     </PageBorder>
   );
 };
 
 export default Signup;
-
-const OrgBtn = styled(SubmitButton)`
-  margin-top: 5px;
-  background: #f8f7ef;
-  width: 400px;
-  height: 35px;
-`;
 
 const SelectBox = styled(Select)`
   margin-bottom: 10px;
@@ -107,7 +114,7 @@ const Option = styled(Select.Option)`
 `;
 
 const SubmitBtn = styled(SubmitButton)`
-  margin-top: 25%;
+  margin-top: 8%;
   width: 85%;
   margin-bottom: 5%;
   height: 35px;
@@ -116,6 +123,25 @@ const SubmitBtn = styled(SubmitButton)`
 const SubmitBtnBlack = styled(SubmitButtonBlack)`
   width: 85%;
   height: 35px;
+`;
+
+const OrgSignup = styled.div`
+  margin-top: 15%;
+  color: blueviolet;
+  &:hover {
+    color: ${({ theme }) => theme.colors.color_text_light} !important;
+    transition: border-color 0.3s;
+  }
+
+  &:focus-within {
+    border-color: ${({ theme }) =>
+      theme.colors.color_primary_regular} !important;
+    transition: border-color 0.3s;
+  }
+
+  ::placeholder {
+    color: ${({ theme }) => theme.colors.color_text_placeholder};
+  }
 `;
 
 const Head = styled.h1`
@@ -143,7 +169,7 @@ const InputContainer = styled.div`
   justify-content: center;
   align-items: center;
   width: 400px;
-  height: 650px;
+  height: 750px;
   background: #f8f7f5;
   border-radius: 10px;
 `;
