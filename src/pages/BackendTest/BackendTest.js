@@ -3,8 +3,20 @@ import React from "react";
 // import { useCourseList } from "apicache";
 import * as api from "../../apicache/api";
 
-const BackendTest = async () => {
-  console.log(await api.getUserInfo(1));
+const BackendTest = () => {
+  api.getUserInfo(1).then((res) => console.log(res));
+  // console.log(
+  //   api.signUp("ko@wisc.edu", "password12", {
+  //     korean_name: "고한별",
+  //     kakaotalk_id: "randomid",
+  //     phone_number: "111-111-1111",
+  //     standing: "senior",
+  //   })
+  // );
+  //console.log(api.getMajors());
+
+  //console.log(JSON.stringify(user));
+
   //example for using queries
   // const {
   //   data: { results: courseList, count: courseNumber },

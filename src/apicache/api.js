@@ -1,6 +1,5 @@
 import { supabase } from "../supabaseClient";
 //const fs = require('fs');
-
 export async function getTable(name, query = undefined) {
   const { data, error } = await supabase.from(name).select(query);
   if (error) {
@@ -22,58 +21,65 @@ export async function updateTable(name, update, match) {
     throw error;
   }
 }
+export async function createOrg(name) {
+  return insertTable("organizations", { name: name });
+}
+export async function updateOrg(name, data) {
+  return updateTable("organizations", { name: name }, data);
+}
 
-const organizations = {
-  createOrg(name) {
-    return insertTable("organizations", { name: name });
-  },
-
-  updateOrg(name, data) {
-    return updateTable("organizations", { name: name }, data);
-  },
-
-  // danchu: query = 'short_name, full_name, short_description, id' (todo: add logo, background image)
-  // bj: query = { id: id }
-  getOrgs(query = undefined) {
-    return getTable("orgs", query);
-  },
+// danchu: query = 'short_name, full_name, short_description, id' (todo: add logo, background image)
+// bj: query = { id: id }
+export async function getOrgs(query = undefined) {
+  return getTable("orgs", query);
+}
+export const organizations = {
+  createOrg,
+  updateOrg,
+  getOrgs,
 };
 
 export async function getMajors() {
   return getTable("majors");
 }
 
+export const login = {
+  signUp,
+  signIn,
+};
+
 export async function signUp(email, password, info) {
-  const { korean_name, kakaotalk_id, phone_number } = info;
+  const { korean_name, kakaotalk_id, phone_number, standing } = info;
   if (email.slice(-8) !== "wisc.edu") {
-    return;
+    throw Error("Email must end with wisc.edu");
   }
-  const { user, session, signup_error } = await supabase.auth.signUp({
+  const { data, error } = await supabase.auth.signUp({
     email: email,
     password: password,
   });
-  if (signup_error) {
-    throw signup_error;
+  if (error) {
+    throw error;
   }
 
-  const { insert_error } = await supabase.from("users").insert([
+  const insert = await supabase.from("users").insert([
     {
-      id: user.id,
+      id: data.user.id,
       korean_name: korean_name,
       wisc_email: email,
       kakaotalk_id: kakaotalk_id,
       phone_number: phone_number,
+      standing: standing,
     },
   ]);
-  if (insert_error) {
-    throw insert_error;
+  if (insert.error) {
+    throw insert.error;
   }
 
-  return { user: user, session: session };
+  return data;
 }
 
 export async function signIn(email, password) {
-  return await supabase.auth.signIn({
+  return await supabase.auth.signInWithPassword({
     email: email,
     password: password,
   });
@@ -130,11 +136,71 @@ export async function getOrgMajors(query = undefined) {
   return getTable("org_majors", (query = undefined));
 }
 
+export async function getUserMajorsById(id) {
+  const res_user_majors = await supabase
+    .from("user_majors")
+    .select("major_id")
+    .eq("user_id", id);
+  if (res_user_majors.error) {
+    throw res_user_majors.error;
+  }
+
+  let user_major_ids = [];
+  for (var key in res_user_majors.data) {
+    user_major_ids.push(res_user_majors.data[key].major_id);
+  }
+
+  const major_res = await supabase
+    .from("majors")
+    .select("name")
+    .in("id", user_major_ids);
+  if (major_res.error) {
+    throw major_res.error;
+  }
+  let majors = [];
+  for (var key in major_res.data) {
+    majors.push(major_res.data[key].name);
+  }
+  return majors;
+}
+
+export async function getUserOrgById(id) {
+  const res_org_users = await supabase
+    .from("org_users")
+    .select("org_id")
+    .eq("id", id);
+  if (res_org_users.error) {
+    throw res_org_users.error;
+  }
+
+  let user_org_ids = [];
+  for (var key in res_org_users.data) {
+    user_org_ids.push(res_org_users.data[key].org_id);
+  }
+
+  const org_res = await supabase
+    .from("organizations")
+    .select("full_name")
+    .in("id", user_org_ids);
+  if (org_res.error) {
+    throw org_res.error;
+  }
+  let orgs = [];
+  for (var key in org_res.data) {
+    orgs.push(org_res.data[key].full_name);
+  }
+  return orgs;
+}
 // majors, orgs,
 export async function getUserInfo(id) {
-  // return getTable("users", { id: id });
-  const { data, error } = await supabase.from("users").select(`org_users(id)`);
-  return data;
+  const { data, error } = await supabase.from("users").select().eq("id", id);
+  if (error) {
+    throw error;
+  }
+  let info = { ...data[0] };
+  info.majors = await getUserMajorsById(id).then((result) => result);
+  info.orgs = await getUserOrgById(id).then((result) => result);
+  return info;
 }
 
 export async function updateUser(id, data) {
@@ -144,7 +210,9 @@ export async function updateUser(id, data) {
 // supabase.auth.user()
 //
 export async function getLoggedInUserInfo() {
-  return getUserInfo(supabase.auth.getUser().id);
+  const res = await supabase.auth.getUser();
+  const userData = await getUserInfo(res.data.user.id);
+  return userData[0];
 }
 
 // org list: logo, background image, short_name, full name, short_description, id
