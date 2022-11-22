@@ -65,18 +65,62 @@ export async function updateOrg(name, data) {
   return updateTable("organizations", { name: name }, data);
 }
 
-// danchu: query = 'short_name, full_name, short_description, id' (todo: add logo, background image)
-// bj: query = { id: id }
 export async function getOrgs(query = undefined) {
-  return getTable("orgs", query);
+  /*
+    {
+    "data": [
+        {
+        "id": 1,
+        "full_name": "very nice club",
+        "short_name": "nice",
+        "notion_link": null,
+        "description": null,
+        "short_description": null,
+        "email": null,
+        "kakaotalk_id": null,
+        "phone_number": null,
+        "logo_url": null,
+        "bg_url": null,
+        "created_at": "2022-11-22T06:48:15.916203"
+        },
+        {
+        "id": 2,
+        "full_name": "unikists",
+        "short_name": "unikists",
+        "notion_link": null,
+        "description": null,
+        "short_description": null,
+        "email": null,
+        "kakaotalk_id": null,
+        "phone_number": null,
+        "logo_url": null,
+        "bg_url": null,
+        "created_at": "2022-11-22T07:29:02.786603"
+        }
+        ]
+    }
+    */
+  return getTable("organizations", query);
 }
 
+/*
+{
+  "data": [
+    { "id": 1, "name": "Accounting Certificate" },
+    { "id": 2, "name": "African Cultural Studies BA" },
+    { "id": 3, "name": "African Cultural Studies BS" },
+    { "id": 4, "name": "African Studies Certificate" },
+    { "id": 5, "name": "Afro-American Studies BA" },
+    ...
+  ]
+}
+*/
 export async function getMajors() {
   return getTable("majors");
 }
 
 export async function signUp(email, password, info) {
-  const { korean_name, kakaotalk_id, phone_number, standing } = info;
+  const { korean_name, kakaotalk_id, phone_number, standing, wisc_id } = info;
   if (email.slice(-8) !== "wisc.edu") {
     throw Error("Email must end with wisc.edu");
   }
@@ -96,6 +140,7 @@ export async function signUp(email, password, info) {
       kakaotalk_id: kakaotalk_id,
       phone_number: phone_number,
       standing: standing,
+      wisc_id: wisc_id,
     },
   ]);
   if (insert.error) {
@@ -138,9 +183,10 @@ export async function createBoardMember(data) {
       data = {
           user_id: user_id (NOT NULL)
           org_id: org_id (NOT NULL)
+          status: ('pending', 'member', 'board')
       }
       */
-  return insertTable("board_member", data);
+  return insertTable("org_users", data);
 }
 
 export async function getBoardMembers(query = undefined) {
@@ -148,6 +194,12 @@ export async function getBoardMembers(query = undefined) {
 }
 
 export async function createUserMajors(data) {
+  /*
+    data = {
+        user_id:  (NOT NULL)
+        major_id:  (NOT NULL)
+    }
+    */
   return insertTable("user_majors", data);
 }
 
@@ -163,6 +215,9 @@ export async function getOrgMajors(query = undefined) {
   return getTable("org_majors", (query = undefined));
 }
 
+/*
+["Animal Sciences BS", "Computer Science BA"]
+*/
 export async function getUserMajorsById(id) {
   const res_user_majors = await supabase
     .from("user_majors")
@@ -191,6 +246,24 @@ export async function getUserMajorsById(id) {
   return { data: majors };
 }
 
+/*
+[
+    {
+      "id": 1,
+      "full_name": "very nice club",
+      "short_name": "nice",
+      "notion_link": null,
+      "description": null,
+      "short_description": null,
+      "email": null,
+      "kakaotalk_id": null,
+      "phone_number": null,
+      "logo_url": null,
+      "bg_url": null,
+      "created_at": "2022-11-22T06:48:15.916203"
+    }
+  ]
+*/
 export async function getUserOrgById(id) {
   const res_org_users = await supabase
     .from("org_users")
@@ -207,18 +280,111 @@ export async function getUserOrgById(id) {
 
   const org_res = await supabase
     .from("organizations")
-    .select("full_name")
+    .select()
     .in("id", user_org_ids);
   if (org_res.error) {
     throw org_res.error;
   }
   let orgs = [];
   for (var key in org_res.data) {
-    orgs.push(org_res.data[key].full_name);
+    orgs.push(org_res.data[key]);
   }
   return orgs;
 }
+
+/*
+[
+    {
+      "id": 1,
+      "full_name": "very nice club",
+      "short_name": "nice",
+      "notion_link": null,
+      "description": null,
+      "short_description": null,
+      "email": null,
+      "kakaotalk_id": null,
+      "phone_number": null,
+      "logo_url": null,
+      "bg_url": null,
+      "created_at": "2022-11-22T06:48:15.916203"
+    }
+  ]
+*/
+export async function getBoardOrgById(id) {
+  const res_org_users = await supabase
+    .from("org_users")
+    .select("org_id")
+    .match({ id: id, status: "board" });
+  if (res_org_users.error) {
+    throw res_org_users.error;
+  }
+
+  let user_org_ids = [];
+  for (var key in res_org_users.data) {
+    user_org_ids.push(res_org_users.data[key].org_id);
+  }
+
+  const org_res = await supabase
+    .from("organizations")
+    .select()
+    .in("id", user_org_ids);
+  if (org_res.error) {
+    throw org_res.error;
+  }
+  let orgs = [];
+  for (var key in org_res.data) {
+    orgs.push(org_res.data[key]);
+  }
+  return orgs;
+}
+
 // majors, orgs,
+/*
+{
+  "id": "11111-11111-11111-11111",
+  "korean_name": "수박",
+  "wisc_email": "park@wisc.edu",
+  "kakaotalk_id": "parkid",
+  "phone_number": "010-0101-0101",
+  "standing": "senior",
+  "wisc_id": "park",
+  "img_url": null,
+  "created_at": "2022-11-22T06:47:56.704886",
+  "majors": ["Animal Sciences BS"],
+  "orgs": [
+    {
+      "id": 1,
+      "full_name": "very nice club",
+      "short_name": "nice",
+      "notion_link": null,
+      "description": null,
+      "short_description": null,
+      "email": null,
+      "kakaotalk_id": null,
+      "phone_number": null,
+      "logo_url": null,
+      "bg_url": null,
+      "created_at": "2022-11-22T06:48:15.916203"
+    }
+  ],
+  "board_orgs": [
+    {
+      "id": 1,
+      "full_name": "very nice club",
+      "short_name": "nice",
+      "notion_link": null,
+      "description": null,
+      "short_description": null,
+      "email": null,
+      "kakaotalk_id": null,
+      "phone_number": null,
+      "logo_url": null,
+      "bg_url": null,
+      "created_at": "2022-11-22T06:48:15.916203"
+    }
+  ]
+}
+*/
 export async function getUserInfo(id) {
   const { data, error } = await supabase.from("users").select().eq("id", id);
   if (error) {
@@ -227,6 +393,7 @@ export async function getUserInfo(id) {
   let info = { ...data[0] };
   info.majors = await getUserMajorsById(id).then((result) => result);
   info.orgs = await getUserOrgById(id).then((result) => result);
+  info.board_orgs = await getBoardOrgById(id).then((result) => result);
   return info;
 }
 
@@ -234,8 +401,7 @@ export async function updateUser(id, data) {
   return updateTable("users", data, { id: id });
 }
 
-// supabase.auth.user()
-//
+// see getUserInfo
 export async function getLoggedInUserInfo() {
   const res = await supabase.auth.getUser();
   const userData = await getUserInfo(res.data.user.id);
