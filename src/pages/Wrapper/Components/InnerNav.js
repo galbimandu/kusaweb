@@ -117,7 +117,7 @@ const PageNavigator = styled.div`
 const AvatarDropdown = styled(Dropdown)``;
 
 const InnerNavContainer = styled.div`
-  position: fixed;
+  position: sticky;
   top: 0;
   right: 0;
   left: 0;
@@ -126,7 +126,7 @@ const InnerNavContainer = styled.div`
   flex-direction: column;
   align-items: center;
   padding: 0 16px;
-  /* background-color: ${({ theme }) => theme.colors.color_primary_darker}; */
+  background-color: ${({ theme }) => theme.colors.color_white};
   box-shadow: ${({ theme }) => theme.elevations.elevation_medium};
 `;
 

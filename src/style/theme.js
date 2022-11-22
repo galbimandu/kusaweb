@@ -10,49 +10,22 @@ export const sizes = {
 const theme = {
   colors: {
     // Primary
-    color_primary_darker: "#2C5939",
-    color_primary_dark: "#18835C",
-    color_primary_regular: "#3DC28A",
-    color_primary_light: "#69F0AE",
-    color_primary_lighter: "#D1F0D9",
-    // color_primary_darker: "#1B5E20",
-    // color_primary_dark: "#188343",
-    // color_primary_regular: "#3DC274",
-    // color_primary_light: "#69F0AE",
-    // color_primary_lighter: "#B9F6CA",
-    // color_primary_darker: "#224B51",
-    // color_primary_dark: "#298996",
-    // color_primary_regular: "#36ABBB",
-    // color_primary_light: "#4FC5D5",
-    // color_primary_lighter: "#94E1EC",
+    color_text_black: "#1B1B1B", //bold type black title type shit uknowamsayin & header text
+    color_gray: "#F8F7F5", //color of gray box, example logo background color, and color of text in black button
+    color_logo_basic: "#F8F7F4",
 
-    // Base
-    color_base_darker: "#B7C5D2",
-    color_base_dark: "#E1E7EC",
-    color_base_regular: "#F3F5F8",
-    color_base_white: "#FFFFFF",
-    color_base_black: "#20282A",
-    color_base_dimmer: "rgba(#20282A, 0.5)",
+    color_white: "#FFFFFF",
+    color_text_input_box: "#434343", //70% opacity
 
-    // Feedback
-    color_state_warning_dark: "#CC7704",
-    color_state_warning_regular: "#FF9B14",
-    color_state_warning_middle: "#FEBA5F",
-    color_state_warning_light: "#FBF0E1",
+    color_button_white: "#FFFEFC",
+    color_button_black: "#4E4E4E",
+    color_text_in_white_button: "#434343",
+    color_text_in_black_button: "#F8F7F5",
 
-    color_state_notification_dark: "#124A9E",
-    color_state_notification_regular: "#89A1F4",
-    color_state_notification_light: "#E2E6F3",
+    color_org_card: "#EDEDED",
+    color_UW_red: "#C5050C",
 
-    color_state_danger_dark: "#C8271D",
-    color_state_danger_regular: "#F85147",
-    color_state_danger_light: "#FACFCD",
-
-    // Texts
-    color_text_titles: "#2b3d41",
-    color_text_body: "#324249",
-    color_text_light: "#6B7C83",
-    color_text_placeholder: "#9AA5A9",
+    color_text_footer: "#858585",
   },
 
   fontSizes: {

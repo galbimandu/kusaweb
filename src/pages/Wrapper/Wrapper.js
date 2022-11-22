@@ -4,24 +4,27 @@ import { withRouter } from "react-router-dom";
 import InnerNav from "./Components/InnerNav";
 const Wrapper = (props) => {
   return (
-    <>
+    <PageWrapper>
       <InnerNav />
       <Content pathname={props.location.pathname}>{props.children}</Content>
-    </>
+    </PageWrapper>
   );
 };
 
 export default withRouter(Wrapper);
 
-const Content = styled.div`
-  position: fixed;
-  top: ${({ pathname }) => (pathname === "/home" ? 183 : 130)}px;
-  left: 0px;
-  right: 0px;
+const PageWrapper = styled.div`
+  position: absolute;
+  top: 0;
   bottom: 0;
-  background-color: white;
-  overflow: scroll;
+  left: 0;
+  right: 0;
+  overflow-y: scroll;
+`;
 
+const Content = styled.div`
+  margin-top: ${({ pathname }) => (pathname === "/home" ? 183 : 130)}px;
+  background-color: white;
   /* @media ${({ theme }) => theme.screenSizes.mobile} {
     left: ${({ sidebarIsOpen }) => (sidebarIsOpen ? "52px" : "0")};
   } */

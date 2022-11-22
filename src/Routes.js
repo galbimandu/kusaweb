@@ -34,11 +34,6 @@ const OrgSignup = loadable(() =>
 const Detail = loadable(() =>
   lazyRetry(() => import("pages/Organization/OrganizationDescription"))
 );
-
-const Organization = loadable(() =>
-  lazyRetry(() => import("pages/Organization/Organization"))
-);
-
 const OrganizationList = loadable(() =>
   lazyRetry(() => import("pages/OrganizationList/OrganizationList"))
 );
@@ -73,7 +68,6 @@ const Routes = () => {
               {/* <Route path="/home" component={StructureOuter} />
               <Route path="/" component={StructureInner} /> */}
               <Route exact path="/404" component={NotFound} />
-              <Route exact path="/organization" component={Organization} />
               <Route exact path="/organizations" component={OrganizationList} />
               <Route exact path="/backendtest" component={BackendTest} />
               <Route exact path="/organizations/:id" component={Detail} />

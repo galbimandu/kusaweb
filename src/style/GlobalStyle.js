@@ -146,7 +146,7 @@ body * {
   box-sizing: border-box;
   font-family: "Spoqa Han Sans Neo", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Noto Color Emoji";
   &::-webkit-scrollbar {
-    width: 8px;
+    width: 12px;
   }
   &::-webkit-scrollbar-track {
     background: white;
