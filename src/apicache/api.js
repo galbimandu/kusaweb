@@ -42,7 +42,7 @@ export async function getTable(name, query = undefined) {
   if (error) {
     throw error;
   }
-  return data;
+  return { data };
 }
 
 export async function insertTable(name, data) {
@@ -102,7 +102,7 @@ export async function signUp(email, password, info) {
     throw insert.error;
   }
 
-  return data;
+  return { data };
 }
 
 export async function signIn(email, password) {
@@ -188,7 +188,7 @@ export async function getUserMajorsById(id) {
   for (var key in major_res.data) {
     majors.push(major_res.data[key].name);
   }
-  return majors;
+  return { data: majors };
 }
 
 export async function getUserOrgById(id) {

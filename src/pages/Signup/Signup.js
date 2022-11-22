@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled, { ThemeContext } from "styled-components";
 import { Input, SubmitButton, SubmitButtonBlack, Select } from "ui";
 import { useHistory } from "react-router-dom";
-import { useMajors } from "../../apicache/defaultQueries";
+import { useMajors } from "apicache";
 
 const Signup = () => {
   const [name, setName] = useState("");
@@ -14,10 +14,11 @@ const Signup = () => {
   const [ok, setOk] = useState(true);
 
   const history = useHistory();
-
-  const majorList = useMajors();
-  console.log(majorList);
-
+  const tmp = useMajors();
+  console.log(tmp);
+  // const { data: majorList } = useMajors();
+  // console.log(majorList);
+  const majorList = [];
   const check = () => {
     if (!email.includes("@wisc.edu")) {
       window.alert("Please input valid WISC EMAIL");
