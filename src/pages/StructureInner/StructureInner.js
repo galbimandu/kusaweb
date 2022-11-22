@@ -3,7 +3,7 @@ import { Route } from "react-router-dom";
 import loadable from "@loadable/component";
 import lazyRetry from "utils/lazyRetry";
 const Detail = loadable(() =>
-  lazyRetry(() => import("pages/Organization/Detail"))
+  lazyRetry(() => import("pages/Organization/OrganizationDescription"))
 );
 const Wrapper = loadable(() =>
   lazyRetry(() => import("pages/Wrapper/Wrapper"))
