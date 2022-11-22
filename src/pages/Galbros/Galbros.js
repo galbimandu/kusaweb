@@ -12,7 +12,12 @@ const Galbros = () => {
           <img
             alt="avatar"
             src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
-            style={{ width: 144, height: 144, borderRadius: "50%" }}
+            style={{
+              width: 144,
+              height: 144,
+              borderRadius: "50%",
+              border: "4px solid #f8f7f5",
+            }}
           />
         </AvatarBox>
         <MemberDetailBox>
