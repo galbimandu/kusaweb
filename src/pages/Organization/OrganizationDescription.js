@@ -67,7 +67,66 @@ const OrganizationDescription = ({
         <Head>Events</Head>
         <HorizontalBlock>
           <EventsContainerOuter>
-            <EventsContainerInner></EventsContainerInner>
+            <EventsContainerInner>
+              <Icon src="@styled-icons/fa-solid/Bell"></Icon>
+              <AnnouncementElement>
+                <Icon src="@styled-icons/fa-solid/Bell"></Icon>
+                <TextBox>
+                  <HeadBlock>
+                    내생일
+                    <DateBox>05/09</DateBox>
+                  </HeadBlock>
+                  {<div>아이패드가 갖고 싶네요.</div>}
+                </TextBox>
+              </AnnouncementElement>
+              <NotificationElement>
+                <Icon src="@styled-icons/fa-solid/Bell"></Icon>
+                <TextBox>
+                  <HeadBlock>
+                    1팀 VS 2팀
+                    <DateBox>11/23</DateBox>
+                  </HeadBlock>
+                  {
+                    <div>
+                      경기 12시 시작입니다 11시 55분까지 디코 모여주세요
+                    </div>
+                  }
+                </TextBox>
+              </NotificationElement>
+              <SocialElement>
+                <Icon src="@styled-icons/fa-solid/Bell"></Icon>
+                <TextBox>
+                  <HeadBlock>
+                    BOB Social!
+                    <DateBox>12/03</DateBox>
+                  </HeadBlock>
+                  {
+                    <div>
+                      Please bring your own liquor! We are providing some good
+                      ass homemade pizza and I am afraid that I am running out
+                      of words to type in this demo box so that I can
+                      demonstrate that these notification blocks will resize
+                      itself by the length of the descriptions. But if it is too
+                      long like this one the cell will leave...
+                    </div>
+                  }
+                </TextBox>
+              </SocialElement>
+              <MeetingElement>
+                <Icon src="@styled-icons/fa-solid/Bell"></Icon>
+                <TextBox>
+                  <HeadBlock>
+                    Board Members Meeting
+                    <DateBox>12/08</DateBox>
+                  </HeadBlock>
+                  {
+                    <div>
+                      Please bring your computers Location: 6974 Humanities
+                    </div>
+                  }
+                </TextBox>
+              </MeetingElement>
+            </EventsContainerInner>
           </EventsContainerOuter>
           <Field>Drag here to Open</Field>
         </HorizontalBlock>
@@ -109,6 +168,7 @@ const EventsContainerOuter = styled.div`
   border-color: rgba(74, 74, 74, 0.2);
   border-radius: 40px;
   margin: auto;
+  align-items: center;
 `;
 
 const EventsContainerInner = styled.div`
@@ -119,6 +179,78 @@ const EventsContainerInner = styled.div`
   height: 640px;
   width: 480px;
   margin: auto;
+  align-items: center;
+  padding-top: 20px;
+  padding-bottom: 20px;
+`;
+
+const EventElement = styled.div`
+  width: 450px;
+  border: 1px solid #e4e4e4;
+  border-radius: 10px;
+  padding-top: 18px;
+  padding-bottom: 18px;
+  padding-left: 20px;
+  padding-right: 30px;
+  display: flex;
+  margin-top: 18px;
+  justify-content: space-evenly;
+`;
+
+const NotificationElement = styled(EventElement)`
+  background: #fff0c2;
+`;
+
+const SocialElement = styled(EventElement)`
+  background: #ffddbe;
+`;
+
+const MeetingElement = styled(EventElement)`
+  background: #bfe0ff;
+`;
+
+const AnnouncementElement = styled(EventElement)`
+  background: #efc2ff;
+  border: 2px solid #5c5c5c;
+`;
+
+const HeadBlock = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 7px;
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 17px;
+  text-align: justify;
+  color: #434343;
+`;
+
+const TextBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 320px;
+  line-height: 10px;
+  margin-left: 93px;
+  font-size: 8px;
+`;
+
+const DateBox = styled.div`
+  margin-left: 90px;
+  line-height: 20px;
+  font-size: 17px;
+`;
+
+const Icon = styled.img`
+  background: #fffaeb;
+  border-width: 1px 0px 0px 1px;
+  border-style: solid;
+  border-color: #676767;
+  border-radius: 10px;
+  align-items: center;
+  line-height: 55px;
+  width: 50px;
+  height: 50px;
+  justify-content: center;
 `;
 
 const Field = styled.div`
