@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import * as api from "../../apicache/api";
 import { orgAPIs } from "../../apicache/api";
 const BackendTest = () => {
-  api.getOrgs().then((res) => console.log(res));
+  api.getUserInfo("11111-11111-11111-11111").then((res) => console.log(res));
   // const [orgs, setOrgs] = useState([]);
   // useEffect(() => {
   //   orgAPIs.getOrgs().then((res) => {
