@@ -68,7 +68,7 @@ export async function updateOrg(name, data) {
 // danchu: query = 'short_name, full_name, short_description, id' (todo: add logo, background image)
 // bj: query = { id: id }
 export async function getOrgs(query = undefined) {
-  return getTable("orgs", query);
+  return getTable("organizations", query);
 }
 
 export async function getMajors() {
@@ -76,7 +76,7 @@ export async function getMajors() {
 }
 
 export async function signUp(email, password, info) {
-  const { korean_name, kakaotalk_id, phone_number, standing } = info;
+  const { korean_name, kakaotalk_id, phone_number, standing, wisc_id } = info;
   if (email.slice(-8) !== "wisc.edu") {
     throw Error("Email must end with wisc.edu");
   }
@@ -96,6 +96,7 @@ export async function signUp(email, password, info) {
       kakaotalk_id: kakaotalk_id,
       phone_number: phone_number,
       standing: standing,
+      wisc_id: wisc_id,
     },
   ]);
   if (insert.error) {
@@ -207,17 +208,46 @@ export async function getUserOrgById(id) {
 
   const org_res = await supabase
     .from("organizations")
-    .select("full_name")
+    .select()
     .in("id", user_org_ids);
   if (org_res.error) {
     throw org_res.error;
   }
   let orgs = [];
   for (var key in org_res.data) {
-    orgs.push(org_res.data[key].full_name);
+    orgs.push(org_res.data[key]);
   }
   return orgs;
 }
+
+export async function getBoardOrgById(id) {
+  const res_org_users = await supabase
+    .from("board_member")
+    .select("org_id")
+    .eq("user_id", id);
+  if (res_org_users.error) {
+    throw res_org_users.error;
+  }
+
+  let user_org_ids = [];
+  for (var key in res_org_users.data) {
+    user_org_ids.push(res_org_users.data[key].org_id);
+  }
+
+  const org_res = await supabase
+    .from("organizations")
+    .select()
+    .in("id", user_org_ids);
+  if (org_res.error) {
+    throw org_res.error;
+  }
+  let orgs = [];
+  for (var key in org_res.data) {
+    orgs.push(org_res.data[key]);
+  }
+  return orgs;
+}
+
 // majors, orgs,
 export async function getUserInfo(id) {
   const { data, error } = await supabase.from("users").select().eq("id", id);
@@ -227,6 +257,7 @@ export async function getUserInfo(id) {
   let info = { ...data[0] };
   info.majors = await getUserMajorsById(id).then((result) => result);
   info.orgs = await getUserOrgById(id).then((result) => result);
+  info.board_orgs = await getBoardOrgById(id).then((result) => result);
   return info;
 }
 
