@@ -3,7 +3,6 @@ import React from "react";
 // import { useCourseList } from "apicache";
 import * as api from "../../apicache/api";
 
-
 const BackendTest = async () => {
   console.log(await api.getUserInfo(1));
   //example for using queries
