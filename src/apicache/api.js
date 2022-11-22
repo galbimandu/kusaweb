@@ -42,7 +42,7 @@ export async function getTable(name, query = undefined) {
   if (error) {
     throw error;
   }
-  return data;
+  return { data };
 }
 
 export async function insertTable(name, data) {
@@ -103,7 +103,7 @@ export async function signUp(email, password, info) {
     throw insert.error;
   }
 
-  return data;
+  return { data };
 }
 
 export async function signIn(email, password) {
@@ -222,9 +222,9 @@ export async function getUserOrgById(id) {
 
 export async function getBoardOrgById(id) {
   const res_org_users = await supabase
-    .from("board_member")
+    .from("org_users")
     .select("org_id")
-    .eq("user_id", id);
+    .match({ id: id, status: "board" });
   if (res_org_users.error) {
     throw res_org_users.error;
   }
