@@ -1,14 +1,13 @@
 import { useQuery } from "react-query";
-import * as api from "../../apicache/api";
-
+import { metainfoAPIs } from "apicache/api";
 export const useMajors = () => {
-  async function getMajorListData() {
-    const { data } = await api.getMajors();
+  async function getMajorsData() {
+    const { data } = await metainfoAPIs.getMajors();
     return data;
   }
   return useQuery({
-    queryKey: "get/majorList/",
-    queryFn: getMajorListData,
+    queryKey: "get/majors",
+    queryFn: getMajorsData,
     keepPreviousData: true,
     placeholderData: [],
   });
