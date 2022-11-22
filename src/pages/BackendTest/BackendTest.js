@@ -3,8 +3,8 @@ import React from "react";
 // import { useCourseList } from "apicache";
 import * as api from "../../apicache/api";
 
-const BackendTest = async () => {
-  const majors = await api.getMajors();
+const BackendTest = () => {
+  const majors = api.getMajors();
   console.log(majors);
   //example for using queries
   // const {

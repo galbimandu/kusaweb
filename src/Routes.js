@@ -73,11 +73,11 @@ const Routes = () => {
               {/* <Route path="/home" component={StructureOuter} />
               <Route path="/" component={StructureInner} /> */}
               <Route exact path="/404" component={NotFound} />
-              <Route render={() => <Redirect to="/home" />} />
               <Route exact path="/organization" component={Organization} />
               <Route exact path="/organizations" component={OrganizationList} />
               <Route exact path="/backendtest" component={BackendTest} />
               <Route path="/organization/:id" component={Detail} />
+              {/* <Route render={() => <Redirect to="/home" />} /> */}
             </Wrapper>
           </Switch>
         </ErrorBoundary>

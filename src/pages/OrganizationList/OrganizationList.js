@@ -99,6 +99,8 @@ const OrgCard = styled(Card)`
   border-radius: 15px;
   width: 300px;
   overflow: hidden;
+  /* box-shadow: 14px 24px 16px 0px rgba(28, 38, 71, 0.05) !important;
+  box-shadow: 3px 4px 4px 0px rgba(255, 255, 255, 1) inset !important; */
 `;
 
 const OrgPageWrapper = styled.div`
