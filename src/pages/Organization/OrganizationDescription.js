@@ -31,6 +31,7 @@ const OrganizationDescription = ({
             alt="cover"
             src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
             style={{ width: 300, height: 300 }}
+            onClick={onSignUp}
           />
         }
       </LogoBlock>
