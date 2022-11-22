@@ -1,5 +1,14 @@
-import { createGlobalStyle } from "styled-components";
 import "@fontsource/spartan";
+import "@fontsource/spartan/100.css";
+import "@fontsource/spartan/200.css";
+import "@fontsource/spartan/300.css";
+import "@fontsource/spartan/400.css";
+import "@fontsource/spartan/500.css";
+import "@fontsource/spartan/600.css";
+import "@fontsource/spartan/700.css";
+import "@fontsource/spartan/800.css";
+import "@fontsource/spartan/900.css";
+import { createGlobalStyle } from "styled-components";
 const GlobalStyle = createGlobalStyle`
 
 

@@ -26,6 +26,7 @@ const PageWrapper = styled.div`
 const Content = styled.div`
   /* margin-top: ${({ pathname }) => (pathname === "/home" ? 183 : 130)}px; */
   background-color: white;
+  z-index: 1;
   /* @media ${({ theme }) => theme.screenSizes.mobile} {
     left: ${({ sidebarIsOpen }) => (sidebarIsOpen ? "52px" : "0")};
   } */

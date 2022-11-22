@@ -96,6 +96,7 @@ const InputContainer = styled.div`
   height: 500px;
   background: #f8f7f5;
   margin-top: 36px;
+  margin-bottom: 24px;
   border-radius: 10px;
 `;
 

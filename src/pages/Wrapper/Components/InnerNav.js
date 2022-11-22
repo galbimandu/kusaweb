@@ -117,6 +117,7 @@ const PageNavigator = styled.div`
 const AvatarDropdown = styled(Dropdown)``;
 
 const InnerNavContainer = styled.div`
+  z-index: 1;
   position: sticky;
   top: 0;
   right: 0;

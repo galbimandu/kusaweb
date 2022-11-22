@@ -3,27 +3,30 @@ import styled, { ThemeContext } from "styled-components";
 import { Input, SubmitButton, SubmitButtonBlack, Select } from "ui";
 import { useHistory } from "react-router-dom";
 import { useMajors } from "apicache";
+import theme from "style/theme";
 
 const Signup = () => {
   const [userName, setUserName] = useState("");
   const [userPassword, setUserPassword] = useState("");
+  const [userConfirmPassword, setUserConfirmPassword] = useState("");
   const [wiscEmail, setWiscEmail] = useState("");
   const [userMajors, setUserMajors] = useState([]);
   const [userKakaoId, setUserKakaoId] = useState("");
   const [userPhoneNumber, setUserPhoneNumber] = useState("");
   const [userStanding, setUserStanding] = useState("");
   const [filledAllReq, setFilledAllReq] = useState(true);
-
+  const [isWiscEmail, setIsWiscEmail] = useState(true);
   const history = useHistory();
   const { data: majorList } = useMajors();
   console.log(majorList);
 
   const check = () => {
     if (!wiscEmail.includes("@wisc.edu")) {
-      window.alert("Please input valid WISC EMAIL");
+      setIsWiscEmail(false);
       return false;
     }
     return (
+      wiscEmail.includes("@wisc.edu") &&
       userName !== "" &&
       userPassword !== "" &&
       wiscEmail !== "" &&
@@ -67,16 +70,10 @@ const Signup = () => {
       <InputContainer>
         <Head>Sign Up</Head>
         <InputBox
-          placeholder="Name"
+          placeholder="Koraen Name"
           type="name"
           value={userName}
           onChange={(e) => setUserName(e.target.value)}
-        ></InputBox>
-        <InputBox
-          placeholder="Password"
-          type="password"
-          value={userPassword}
-          onChange={(e) => setUserPassword(e.target.value)}
         ></InputBox>
         <InputBox
           placeholder="WISC Email"
@@ -84,17 +81,18 @@ const Signup = () => {
           value={wiscEmail}
           onChange={(e) => setWiscEmail(e.target.value)}
         ></InputBox>
+        {!isWiscEmail && <WarningText>Please Enter a Wisc Email</WarningText>}
         <InputBox
-          placeholder="KakaoTalk ID"
-          type="KakaoId"
-          value={userKakaoId}
-          onChange={(e) => setUserKakaoId(e.target.value)}
-        ></InputBox>
-        <InputBox
-          placeholder="Phone Number"
+          placeholder="Phone Number (optional)"
           type="Phone"
           value={userPhoneNumber}
           onChange={(e) => setUserPhoneNumber(e.target.value)}
+        ></InputBox>
+        <InputBox
+          placeholder="KakaoTalk ID (optional)"
+          type="KakaoId"
+          value={userKakaoId}
+          onChange={(e) => setUserKakaoId(e.target.value)}
         ></InputBox>
         <SelectBox
           mode="multiple"
@@ -114,9 +112,22 @@ const Signup = () => {
           <Option value="Junior">Junior</Option>
           <Option value="Senior">Senior</Option>
         </SelectBox>
-        {<div>{!filledAllReq && <div>please fill out the form</div>}</div>}
+        <InputBox
+          placeholder="Password"
+          type="password"
+          value={userPassword}
+          onChange={(e) => setUserPassword(e.target.value)}
+        ></InputBox>
+        <InputBox
+          placeholder="Confirm Password"
+          type="password"
+          value={userConfirmPassword}
+          onChange={(e) => setUserConfirmPassword(e.target.value)}
+        ></InputBox>
+        {userConfirmPassword === userPassword && <></>}
+        {!filledAllReq && <WarningText>please fill out the form</WarningText>}
         <OrgSignup onClick={handleOrgSignup}>
-          Sign up for Organization?
+          Click here to register your Organization!
         </OrgSignup>
         <SubmitBtn onClick={onSignup}>Sign Up!</SubmitBtn>
         <SubmitBtnBlack onClick={handleHaveAccount}>
@@ -129,10 +140,18 @@ const Signup = () => {
 
 export default Signup;
 
+const WarningText = styled.div`
+  color: ${({ theme }) => theme.colors.color_UW_red};
+  width: 83%;
+  margin: 4px;
+`;
+
 const SelectBox = styled(Select)`
-  margin-bottom: 6%;
+  margin-top: 24px;
   width: 85%;
-  border-radius: 10px;
+  .ant-select-selector {
+    border-radius: 10px !important;
+  }
 `;
 
 const Option = styled(Select.Option)`
@@ -142,7 +161,7 @@ const Option = styled(Select.Option)`
 `;
 
 const SubmitBtn = styled(SubmitButton)`
-  margin-top: 8%;
+  margin-top: 8px;
   width: 85%;
   margin-bottom: 5%;
   height: 35px;
@@ -154,7 +173,7 @@ const SubmitBtnBlack = styled(SubmitButtonBlack)`
 `;
 
 const OrgSignup = styled.div`
-  margin-top: 15%;
+  margin-top: 40px;
   color: blueviolet;
   &:hover {
     color: ${({ theme }) => theme.colors.color_text_light} !important;
@@ -172,34 +191,69 @@ const OrgSignup = styled.div`
   }
 `;
 
-const Head = styled.h1`
-  margin-top: 5%;
-  margin-bottom: 15%;
-  font-family: "Spartan";
+const Head = styled.div`
+  margin-top: 41px;
+  margin-bottom: 60px;
   font-style: normal;
-
+  font-weight: 700;
   text-align: center;
+  font-size: 40px;
+  line-height: 50px;
 
-  color: #1a1a1a;
+  color: ${({ theme }) => theme.colors.color_text_black};
 `;
 
 const PageBorder = styled.div`
   display: flex;
+  flex-direction: column;
   width: 100%;
   height: 100%;
   justify-content: center;
   align-items: center;
 `;
-const InputContainer = styled.div``;
-const InputLine = styled.div`
-  width: 500px;
+const InputContainer = styled.div`
   display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 400px;
+  background: #f8f7f5;
+  margin-top: 36px;
+  margin-bottom: 24px;
+  padding-bottom: 24px;
+  border-radius: 10px;
 `;
 
 const InputBox = styled(Input)`
+  width: 85%;
+  height: 35px;
+  margin-top: 24px;
+  box-sizing: border-box;
+
+  /* Auto layout */
+
   display: flex;
-  padding-left: 20px;
-  width: 100%;
-  height: 50px;
-  /* border: 1px solid rgb(192, 192, 192); */
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 10px;
+  gap: 10px;
+
+  background: #ffffff;
+  border: 1px solid #e4e4e4;
+  border-radius: 10px;
+
+  &:hover {
+    border-color: ${({ theme }) => theme.colors.color_text_light} !important;
+    transition: border-color 0.3s;
+  }
+
+  &:focus-within {
+    border-color: ${({ theme }) =>
+      theme.colors.color_primary_regular} !important;
+    transition: border-color 0.3s;
+  }
+
+  ::placeholder {
+    color: ${({ theme }) => theme.colors.color_text_placeholder};
+  }
 `;
