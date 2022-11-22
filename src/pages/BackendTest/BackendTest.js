@@ -1,11 +1,18 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 //import here
 // import { useCourseList } from "apicache";
 import * as api from "../../apicache/api";
-
+import { orgAPIs } from "../../apicache/api";
 const BackendTest = () => {
-  const majors = api.getMajors();
-  console.log(majors);
+  const [orgs, setOrgs] = useState([]);
+  useEffect(() => {
+    orgAPIs.getOrgs().then((res) => {
+      setOrgs(res);
+    });
+  }, []);
+
+  //console.log(JSON.stringify(user));
+
   //example for using queries
   // const {
   //   data: { results: courseList, count: courseNumber },

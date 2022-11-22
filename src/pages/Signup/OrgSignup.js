@@ -24,11 +24,11 @@ const OrgSignup = () => {
   };
 
   const handleUserSignup = () => {
-    history.push("/home/signup");
+    history.push("/signup");
   };
 
   const handleHaveAccount = () => {
-    history.push("/home/login");
+    history.push("/login");
   };
 
   return (
@@ -70,9 +70,9 @@ const OrgSignup = () => {
 export default OrgSignup;
 
 const OrgBtn = styled(SubmitButton)`
-  margin-top: 3%;
+  margin-top: 5px;
   background: #f8f7ef;
-  width: (400 * 0.85) px;
+  width: 400px;
   height: 35px;
 `;
 
@@ -101,6 +101,7 @@ const Head = styled.h1`
 
 const PageBorder = styled.div`
   display: flex;
+  flex-direction: column;
   width: 100%;
   height: 100%;
   justify-content: center;

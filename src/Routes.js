@@ -32,7 +32,7 @@ const OrgSignup = loadable(() =>
   lazyRetry(() => import("pages/Signup/OrgSignup"))
 );
 const Detail = loadable(() =>
-  lazyRetry(() => import("pages/Organization/Detail"))
+  lazyRetry(() => import("pages/Organization/OrganizationDescription"))
 );
 
 const Organization = loadable(() =>
@@ -76,8 +76,7 @@ const Routes = () => {
               <Route exact path="/organization" component={Organization} />
               <Route exact path="/organizations" component={OrganizationList} />
               <Route exact path="/backendtest" component={BackendTest} />
-              <Route path="/organization/:id" component={Detail} />
-              {/* <Route render={() => <Redirect to="/home" />} /> */}
+              <Route exact path="/organizations/:id" component={Detail} />
             </Wrapper>
           </Switch>
         </ErrorBoundary>

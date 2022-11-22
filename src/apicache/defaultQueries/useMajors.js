@@ -1,20 +1,14 @@
 import { useQuery } from "react-query";
-
-export const useCourseList = (page, coursePerPage) => {
-  async function getCourseListData() {
-    const { data } = await courseListAPIs.getCourseListAxios(
-      coursePerPage,
-      coursePerPage * (page - 1)
-    );
+import { metainfoAPIs } from "apicache/api";
+export const useMajors = () => {
+  async function getMajorsData() {
+    const { data } = await metainfoAPIs.getMajors();
     return data;
   }
   return useQuery({
-    queryKey: ["get/courselist/", page, coursePerPage * (page - 1)],
-    queryFn: getCourseListData,
+    queryKey: "get/majors",
+    queryFn: getMajorsData,
     keepPreviousData: true,
-    placeholderData: {
-      results: [],
-      count: 0,
-    },
+    placeholderData: [],
   });
 };
