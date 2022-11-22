@@ -12,7 +12,7 @@ const Login = () => {
 
   const history = useHistory();
   const onLogin = () => {
-    api.login.signIn(email, password);
+    api.loginAPIs.signIn(email, password);
     history.push("/home");
   };
   const handleFindPassword = () => {
