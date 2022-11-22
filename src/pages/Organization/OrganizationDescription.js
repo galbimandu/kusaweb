@@ -44,7 +44,7 @@ const OrganizationDescription = ({
         </AvatarBox>
         <MemberDetailBox>
           <MiniHead>President</MiniHead>
-          <MiniHead>Name</MiniHead>
+          <MiniHead>{member}</MiniHead>
           <MessageBox>{message}</MessageBox>
         </MemberDetailBox>
       </MemberBox>
