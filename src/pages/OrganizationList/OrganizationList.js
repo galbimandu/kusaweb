@@ -44,7 +44,7 @@ const OrganizationList = () => {
       id: 53,
       abrv: "KESL",
       fullname: "Korean E-Sports Legacy",
-      description: "한인 게임 동아리",
+      description: "한인 최강의 게임 동아리",
       avatar: kesl,
       cover: "https://picsum.photos/300/182",
     },
