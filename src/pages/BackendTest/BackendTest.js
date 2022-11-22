@@ -4,8 +4,7 @@ import React from "react";
 import * as api from "../../apicache/api";
 
 const BackendTest = async () => {
-  const majors = await api.getMajors();
-  console.log(majors);
+  console.log(await api.getUserInfo(1));
   //example for using queries
   // const {
   //   data: { results: courseList, count: courseNumber },
