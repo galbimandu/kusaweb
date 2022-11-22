@@ -2,24 +2,34 @@ import React, { useState } from "react";
 import styled, { ThemeContext } from "styled-components";
 import { Input, SubmitButton, SubmitButtonBlack, Select } from "ui";
 import { useHistory } from "react-router-dom";
+import { useMajors } from "apicache";
 
 const Signup = () => {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [major, setMajor] = useState("");
-  const [phone, setPhone] = useState("");
-  const [standing, setStanding] = useState("");
-  const [ok, setOk] = useState(true);
+  const [userName, setUserName] = useState("");
+  const [userPassword, setUserPassword] = useState("");
+  const [wiscEmail, setWiscEmail] = useState("");
+  const [userMajors, setUserMajors] = useState([]);
+  const [userKakaoId, setUserKakaoId] = useState("");
+  const [userPhoneNumber, setUserPhoneNumber] = useState("");
+  const [userStanding, setUserStanding] = useState("");
+  const [filledAllReq, setFilledAllReq] = useState(true);
 
   const history = useHistory();
+  const { data: majorList } = useMajors();
+  console.log(majorList);
 
   const check = () => {
-    if (!email.includes("@wisc.edu")) {
+    if (!wiscEmail.includes("@wisc.edu")) {
       window.alert("Please input valid WISC EMAIL");
       return false;
     }
     return (
-      name != "" && email != "" && major != "" && phone != "" && standing != ""
+      userName !== "" &&
+      userPassword !== "" &&
+      wiscEmail !== "" &&
+      userMajors.length !== 0 &&
+      userPhoneNumber !== "" &&
+      userStanding !== ""
     );
   };
 
@@ -36,9 +46,21 @@ const Signup = () => {
       console.log("nice");
       history.push("/home");
     } else {
-      setOk(false);
+      setFilledAllReq(false);
     }
   };
+  const handleMajorSelection = (value) => {
+    let temp = [...userMajors];
+    temp.push(value);
+    setUserMajors(temp);
+  };
+
+  const generateOptions = () =>
+    majorList.map((major) => (
+      <Option key={major.id} value={major.name} label={major.name}>
+        {major.name}
+      </Option>
+    ));
 
   return (
     <PageBorder>
@@ -47,67 +69,80 @@ const Signup = () => {
         <InputBox
           placeholder="Name"
           type="name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
+          value={userName}
+          onChange={(e) => setUserName(e.target.value)}
+        ></InputBox>
+        <InputBox
+          placeholder="Password"
+          type="password"
+          value={userPassword}
+          onChange={(e) => setUserPassword(e.target.value)}
         ></InputBox>
         <InputBox
           placeholder="WISC Email"
           type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          value={wiscEmail}
+          onChange={(e) => setWiscEmail(e.target.value)}
         ></InputBox>
         <InputBox
-          placeholder="Major"
-          type="major"
-          value={major}
-          onChange={(e) => setMajor(e.target.value)}
+          placeholder="KakaoTalk ID"
+          type="KakaoId"
+          value={userKakaoId}
+          onChange={(e) => setUserKakaoId(e.target.value)}
         ></InputBox>
         <InputBox
           placeholder="Phone Number"
           type="Phone"
-          value={phone}
-          onChange={(e) => setPhone(e.target.value)}
+          value={userPhoneNumber}
+          onChange={(e) => setUserPhoneNumber(e.target.value)}
         ></InputBox>
         <SelectBox
+          mode="multiple"
+          placeholder="Select your majors please"
+          defaultValue={userMajors}
+          onChange={handleMajorSelection}
+          optionLabelProp="label"
+        >
+          {generateOptions()}
+        </SelectBox>
+        <SelectBox
           placeholder="Choose your standing"
-          onSelect={(value) => setStanding(value)}
+          onSelect={(value) => setUserStanding(value)}
         >
           <Option value="Freshman">Freshman</Option>
           <Option value="Sophomore">Sophomore</Option>
           <Option value="Junior">Junior</Option>
           <Option value="Senior">Senior</Option>
         </SelectBox>
+        {<div>{!filledAllReq && <div>please fill out the form</div>}</div>}
+        <OrgSignup onClick={handleOrgSignup}>
+          Sign up for Organization?
+        </OrgSignup>
         <SubmitBtn onClick={onSignup}>Sign Up!</SubmitBtn>
         <SubmitBtnBlack onClick={handleHaveAccount}>
           Already have an account?
         </SubmitBtnBlack>
-        {!ok && <div>please fill out the form</div>}
       </InputContainer>
-      <OrgBtn onClick={handleOrgSignup}>Sign up for Organization</OrgBtn>
     </PageBorder>
   );
 };
 
 export default Signup;
 
-const OrgBtn = styled(SubmitButton)`
-  margin-top: 5px;
-  background: #f8f7ef;
-  width: 400px;
-  height: 35px;
-`;
-
 const SelectBox = styled(Select)`
-  margin-bottom: 10px;
+  margin-bottom: 6%;
   width: 85%;
+  border-radius: 10px;
 `;
 
 const Option = styled(Select.Option)`
-  height: 35px;
+  height: 40px;
+  width: 85%;
+  padding-left: 3px;
 `;
 
 const SubmitBtn = styled(SubmitButton)`
-  margin-top: 25%;
+  margin-top: 8%;
   width: 85%;
   margin-bottom: 5%;
   height: 35px;
@@ -118,9 +153,28 @@ const SubmitBtnBlack = styled(SubmitButtonBlack)`
   height: 35px;
 `;
 
+const OrgSignup = styled.div`
+  margin-top: 15%;
+  color: blueviolet;
+  &:hover {
+    color: ${({ theme }) => theme.colors.color_text_light} !important;
+    transition: border-color 0.3s;
+  }
+
+  &:focus-within {
+    border-color: ${({ theme }) =>
+      theme.colors.color_primary_regular} !important;
+    transition: border-color 0.3s;
+  }
+
+  ::placeholder {
+    color: ${({ theme }) => theme.colors.color_text_placeholder};
+  }
+`;
+
 const Head = styled.h1`
   margin-top: 5%;
-  margin-bottom: 25%;
+  margin-bottom: 15%;
   font-family: "Spartan";
   font-style: normal;
 
@@ -143,7 +197,7 @@ const InputContainer = styled.div`
   justify-content: center;
   align-items: center;
   width: 400px;
-  height: 650px;
+  height: 750px;
   background: #f8f7f5;
   border-radius: 10px;
 `;

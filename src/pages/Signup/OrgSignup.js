@@ -1,17 +1,20 @@
 import React, { useState } from "react";
-import { Input, SubmitButton, SubmitButtonBlack } from "ui";
+import { Input, SubmitButton, SubmitButtonBlack, Select } from "ui";
 import styled, { ThemeContext } from "styled-components";
 import { useHistory } from "react-router-dom";
+import { useMajors } from "apicache";
 
 const OrgSignup = () => {
-  const [name, setName] = useState("");
-  const [fields, setFields] = useState("");
-  const [IId, setIId] = useState("");
+  const [orgName, setOrgName] = useState("");
+  const [InstaId, setInstaId] = useState("");
+  const [majors, setMajors] = useState([]);
   const history = useHistory();
-  const [ok, setOk] = useState(true);
+  const [filledAllReq, setFilledAllReq] = useState(true);
+
+  const { data: majorList } = useMajors();
 
   const check = () => {
-    return name != "" && fields != "" && IId != "";
+    return orgName != "" && majors != [] && InstaId != "";
   };
 
   const onSignup = () => {
@@ -19,17 +22,27 @@ const OrgSignup = () => {
       window.alert("success!");
       history.push("/home");
     } else {
-      setOk(false);
+      window.alert("please fill out the form");
+      setFilledAllReq(false);
     }
-  };
-
-  const handleUserSignup = () => {
-    history.push("/signup");
   };
 
   const handleHaveAccount = () => {
     history.push("/login");
   };
+
+  const handleMajorSelection = (value) => {
+    let temp = [...majors];
+    temp.push(value);
+    setMajors(temp);
+  };
+
+  const generateOptions = () =>
+    majorList.map((major) => (
+      <Option key={major.id} value={major.name} label={major.name}>
+        {major.name}
+      </Option>
+    ));
 
   return (
     <PageBorder>
@@ -38,42 +51,48 @@ const OrgSignup = () => {
         <InputBox
           placeholder="동아리명"
           type="name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
+          value={orgName}
+          onChange={(e) => setOrgName(e.target.value)}
         ></InputBox>
 
-        <InputBox
-          placeholder="Fields related to Org"
-          type="fields"
-          value={fields}
-          onChange={(e) => setFields(e.target.value)}
-        ></InputBox>
+        <SelectBox
+          mode="multiple"
+          placeholder="Select Majors Related to the Org"
+          defaultValue={majors}
+          onChange={handleMajorSelection}
+          optionLabelProp="label"
+        >
+          {generateOptions()}
+        </SelectBox>
 
         <InputBox
           placeholder="Insta ID"
           type="IId"
-          value={IId}
-          onChange={(e) => setIId(e.target.value)}
+          value={InstaId}
+          onChange={(e) => setInstaId(e.target.value)}
         ></InputBox>
-
+        {!filledAllReq && <div>please fill out the form</div>}
         <SubmitBtn onClick={onSignup}>Sign Up!</SubmitBtn>
         <SubmitBtnBlack onClick={handleHaveAccount}>
           Already Have an Account?
         </SubmitBtnBlack>
-        {!ok && <div>please fill out the form</div>}
       </InputContainer>
-      <OrgBtn onClick={handleUserSignup}>Student Signup</OrgBtn>
     </PageBorder>
   );
 };
 
 export default OrgSignup;
 
-const OrgBtn = styled(SubmitButton)`
-  margin-top: 5px;
-  background: #f8f7ef;
-  width: 400px;
-  height: 35px;
+const SelectBox = styled(Select)`
+  margin-bottom: 6%;
+  width: 85%;
+  border-radius: 10px;
+`;
+
+const Option = styled(Select.Option)`
+  height: 40px;
+  width: 85%;
+  padding-left: 3px;
 `;
 
 const SubmitBtn = styled(SubmitButton)`
