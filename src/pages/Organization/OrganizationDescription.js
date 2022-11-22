@@ -35,12 +35,17 @@ const OrganizationDescription = ({
           <img
             alt="avatar"
             src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
-            style={{ width: 144, height: 144, borderRadius: "50%" }}
+            style={{
+              width: 144,
+              height: 144,
+              borderRadius: "50%",
+              border: "4px solid #f8f7f5",
+            }}
           />
         </AvatarBox>
         <MemberDetailBox>
           <MiniHead>President</MiniHead>
-          <MiniHead>Name</MiniHead>
+          <MiniHead>{member}</MiniHead>
           <MessageBox>{message}</MessageBox>
         </MemberDetailBox>
       </MemberBox>
@@ -53,7 +58,12 @@ const OrganizationDescription = ({
           <img
             alt="cover"
             src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
-            style={{ width: 300, height: 300 }}
+            style={{
+              width: 300,
+              height: 300,
+              borderRadius: "50%",
+              border: "4px solid #f8f7f5",
+            }}
             onClick={onSignUp}
           />
         }
@@ -68,7 +78,10 @@ const OrganizationDescription = ({
         <HorizontalBlock>
           <EventsContainerOuter>
             <EventsContainerInner>
-              <Icon src="@styled-icons/fa-solid/Bell"></Icon>
+              <Icon
+                alt="avatar"
+                src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
+              ></Icon>
               <AnnouncementElement>
                 <Icon src="@styled-icons/fa-solid/Bell"></Icon>
                 <TextBox>
