@@ -17,26 +17,21 @@ import lazyRetry from "utils/lazyRetry";
 const queryClient = new QueryClient();
 const NotFound = loadable(() => import("./pages/Errors/NotFound"));
 
-const AboutUs = loadable(() =>
-  lazyRetry(() => import("pages/AboutUs/AboutUs"))
-);
 const Wrapper = loadable(() =>
   lazyRetry(() => import("pages/Wrapper/Wrapper"))
 );
 const Signup = loadable(() => lazyRetry(() => import("pages/Signup/Signup")));
 const Home = loadable(() => lazyRetry(() => import("pages/Home/Home")));
 const Login = loadable(() => lazyRetry(() => import("pages/Login/Login")));
+const AboutUs = loadable(() =>
+  lazyRetry(() => import("pages/AboutUs/AboutUs"))
+);
 const OrgSignup = loadable(() =>
   lazyRetry(() => import("pages/Signup/OrgSignup"))
 );
 const Detail = loadable(() =>
   lazyRetry(() => import("pages/Organization/OrganizationDescription"))
 );
-
-const Organization = loadable(() =>
-  lazyRetry(() => import("pages/Organization/Organization"))
-);
-
 const OrganizationList = loadable(() =>
   lazyRetry(() => import("pages/OrganizationList/OrganizationList"))
 );
@@ -75,7 +70,6 @@ const Routes = () => {
               {/* <Route path="/home" component={StructureOuter} />
               <Route path="/" component={StructureInner} /> */}
               <Route exact path="/404" component={NotFound} />
-              <Route exact path="/organization" component={Organization} />
               <Route exact path="/organizations" component={OrganizationList} />
               <Route exact path="/backendtest" component={BackendTest} />
               <Route exact path="/organizations/:id" component={Detail} />

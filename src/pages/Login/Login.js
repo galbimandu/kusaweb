@@ -11,7 +11,6 @@ const Login = () => {
 
   const history = useHistory();
   const onLogin = () => {
-    // api.loginAPIs.signIn(email, password);
     history.push("/home");
   };
   const handleFindPassword = () => {
@@ -96,6 +95,8 @@ const InputContainer = styled.div`
   width: 400px;
   height: 500px;
   background: #f8f7f5;
+  margin-top: 36px;
+  margin-bottom: 24px;
   border-radius: 10px;
 `;
 

@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@fontsource/spartan": "^4.5.8",
     "@loadable/component": "^5.15.2",
     "@supabase/supabase-js": "^2.1.0",
     "@testing-library/jest-dom": "^5.16.5",
@@ -10,6 +11,7 @@
     "antd": "^4.24.2",
     "axios": "^1.1.2",
     "env-cmd": "^10.1.0",
+    "ghost-cursor": "^1.1.16",
     "loadable": "^1.0.0",
     "react": "^16.14.0",
     "react-dom": "^16.14.0",

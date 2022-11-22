@@ -117,7 +117,8 @@ const PageNavigator = styled.div`
 const AvatarDropdown = styled(Dropdown)``;
 
 const InnerNavContainer = styled.div`
-  position: fixed;
+  z-index: 1;
+  position: sticky;
   top: 0;
   right: 0;
   left: 0;
@@ -126,8 +127,8 @@ const InnerNavContainer = styled.div`
   flex-direction: column;
   align-items: center;
   padding: 0 16px;
-  /* background-color: ${({ theme }) => theme.colors.color_primary_darker}; */
-  box-shadow: ${({ theme }) => theme.elevations.elevation_medium};
+  background-color: ${({ theme }) => theme.colors.color_white};
+  /* box-shadow: ${({ theme }) => theme.elevations.elevation_medium}; */
 `;
 
 const TopContainer = styled.div`
