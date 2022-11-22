@@ -9,6 +9,7 @@
     "@testing-library/user-event": "^13.5.0",
     "antd": "^4.24.2",
     "axios": "^1.1.2",
+    "env-cmd": "^10.1.0",
     "loadable": "^1.0.0",
     "react": "^16.14.0",
     "react-dom": "^16.14.0",
