@@ -2,11 +2,13 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { withRouter } from "react-router-dom";
 import InnerNav from "./Components/InnerNav";
+import { BottomNav } from "./Components/BottomNav";
 const Wrapper = (props) => {
   return (
     <PageWrapper>
       <InnerNav />
       <Content pathname={props.location.pathname}>{props.children}</Content>
+      <BottomNav />
     </PageWrapper>
   );
 };

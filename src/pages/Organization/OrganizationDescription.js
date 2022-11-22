@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled, { ThemeContext } from "styled-components";
 
 const orgData = {
-  name: "Unikists",
+  name: "Korean E-Sports Legacy",
   description:
     "Lorem ipsum dolor sit amet consectetur adipiscing elit. Mauris portapretium odio in auctor. Vivamus placerat molestie sem quis vestibulum.Aenean auctor rutrum odio scelerisque rhoncus. Aliquam in ex sit ametsapien volutpat cursus. Maecenas quis dignissim quam, mattis euismodmagna. Sed elit mauris, sagittis in tincidunt vitae, lacinia id lectus. Vestibulum ipsum libero, ornare ac diam vitae, accumsan ullamcorper nulla.Curabitur viverra eu magna in dictum. Nunc a eros rutrum libero facilisis rhoncus. Praesent scelerisque mattis lectus eget semper. Vivamus indignissim enim. Vestibulum pulvinar rutrum ullamcorper. Morbipellentesque ante vel metus ultricies pellentesque. Donec porta dui lectus, tincidunt rutrum eros congue pretium. Nullam in ligula quis enimullamcorper elementum finibus eu tellus.",
 };
@@ -21,7 +21,7 @@ const OrganizationDescription = ({
 
   const onSignUp = () => {
     // createBoardMember(userProfile);
-    window.alert("You just signed up for {orgName}");
+    // window.alert("You just signed up for {orgName}");
   };
 
   const WE = ["Galbi", "JIN", "HB", "SJ", "ZBZ"];
@@ -59,7 +59,7 @@ const OrganizationDescription = ({
         }
       </LogoBlock>
       <Block>
-        <Head>{orgData.name},</Head>
+        <OrgName>{orgData.name}</OrgName>
         <Head>About Us</Head>
         <Box>{orgData.description}</Box>
       </Block>
@@ -84,14 +84,17 @@ export default OrganizationDescription;
 
 //implement signup function on this logo
 const LogoBlock = styled.div`
-  margin-top: 10%;
-  margin-bottom: 10%;
+  margin-top: 60px;
+  width: 300px;
+  margin-bottom: 80px;
   justify-content: center;
+  border-radius: 100%;
+  overflow: hidden;
   align-items: center;
-  .LogoBlock img {
+  /* .LogoBlock img {
     width: 100%;
     height: 100%;
-  }
+  } */
 `;
 
 const EventsContainerOuter = styled.div`
@@ -143,16 +146,24 @@ const Block = styled.div`
   margin-bottom: 7%;
 `;
 const Box = styled.div`
-  margin-top: 15px;
   width: 1075px;
   margin-left: 25px;
 `;
 
-const Head = styled.h1`
-  font-weight: 700;
-  font-size: 36px;
-  line-height: 45px;
+const OrgName = styled.div`
+  font-weight: 500;
+  font-size: 30px;
+  line-height: 33.6px;
   text-align: justify;
+  margin-bottom: 24px;
+`;
+
+const Head = styled.div`
+  font-weight: 400;
+  font-size: 26px;
+  line-height: 29px;
+  text-align: justify;
+  margin-bottom: 40px;
 `;
 
 const MiniHead = styled.h5`
