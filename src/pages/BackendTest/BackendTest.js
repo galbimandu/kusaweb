@@ -4,12 +4,13 @@ import React, { useEffect, useState } from "react";
 import * as api from "../../apicache/api";
 import { orgAPIs } from "../../apicache/api";
 const BackendTest = () => {
-  const [orgs, setOrgs] = useState([]);
-  useEffect(() => {
-    orgAPIs.getOrgs().then((res) => {
-      setOrgs(res);
-    });
-  }, []);
+  api.getOrgs().then((res) => console.log(JSON.stringify(res)));
+  // const [orgs, setOrgs] = useState([]);
+  // useEffect(() => {
+  //   orgAPIs.getOrgs().then((res) => {
+  //     setOrgs(res);
+  //   });
+  // }, []);
 
   //console.log(JSON.stringify(user));
 
