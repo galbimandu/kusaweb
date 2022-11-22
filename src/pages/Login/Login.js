@@ -11,7 +11,7 @@ const Login = () => {
 
   const history = useHistory();
   const onLogin = () => {
-    api.loginAPIs.signIn(email, password);
+    // api.loginAPIs.signIn(email, password);
     history.push("/home");
   };
   const handleFindPassword = () => {
