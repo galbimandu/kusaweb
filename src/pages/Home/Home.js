@@ -1,8 +1,50 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
 import styled from "styled-components";
+import ksea from "images/logo/KSEA.svg";
+import unikistsbg from "images/background/unikists.JPG";
+import badger from "images/logo/badger.svg";
+import kcu from "images/background/kcu.png";
+import kesl from "images/logo/kesl.png";
+import kic from "images/logo/kic.png";
+import kesa from "images/logo/kesa.png";
+import kbsa from "images/logo/kbsa.png";
+import madk from "images/logo/madk.png";
+import kuha from "images/logo/kuha.png";
 
-const Home = (props) => {
+const Home = () => {
+  const logos = [
+    [ksea, "KSEA"],
+    [unikistsbg, "Unikists"],
+    [badger, "Badger"],
+    [kcu, "KCU"],
+    [kesl, "KESL"],
+    [kic, "KIC"],
+    [kesa, "KESA"],
+    [kbsa, "KBSA"],
+    [madk, "MAD-K"],
+    [kuha, "KUHA"],
+  ];
+
+  const generateMembersDescriptions = () =>
+    logos.map((logo) => (
+      <OrganizationElement>
+        {
+          <img
+            alt="cover"
+            src={logo[0]}
+            style={{
+              width: 50,
+              height: 50,
+              borderRadius: "50%",
+              border: "4px solid #f8f7f5",
+            }}
+          ></img>
+        }
+        <MiniHead>{logo[1]}</MiniHead>
+      </OrganizationElement>
+    ));
+
   return (
     <HomeWrapper>
       <LogoTextContainer>
@@ -21,6 +63,10 @@ const Home = (props) => {
           out whenever you need us and welcome aboard!
         </MiddleInfo>
       </MiddleWrapper>
+      <OrganizationsBox>
+        <Head>Organizations we support</Head>
+        <LogosWrpper>{generateMembersDescriptions()}</LogosWrpper>
+      </OrganizationsBox>
     </HomeWrapper>
   );
 };
@@ -70,4 +116,40 @@ const ShadowTest = styled.div`
   width: 440px;
   box-shadow: 14px 24px 16px 0px rgba(28, 38, 71, 0.05);
   background: rgba(248, 247, 245, 1);
+`;
+
+const Head = styled.div`
+  line-height: 35px;
+  font-size: 30px;
+  margin-bottom: 40px;
+`;
+
+const MiniHead = styled.h6``;
+
+const OrganizationsBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #f8f7f5;
+  box-shadow: 14px 24px 16px rgba(28, 38, 71, 0.05), inset 3px 4px 4px #ffffff;
+  border-radius: 25px;
+  padding-top: 32px;
+`;
+
+const LogosWrpper = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 32px 64px 32px 44px;
+  gap: 10px;
+  width: 970px;
+`;
+
+const OrganizationElement = styled.div`
+  height: 100px;
+  width: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
