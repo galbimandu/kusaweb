@@ -89,11 +89,11 @@ const InnerNav = (props) => {
         <LogoContainer>
           <KusaLogo onClick={() => handlePageChange("home")} />
         </LogoContainer>
-        {props.location.pathname === "/home" && (
+        {/* {props.location.pathname === "/home" && (
           <LogoTextContainer>
             The hub for Korean Undergraduate Students and Organizations
           </LogoTextContainer>
-        )}
+        )} */}
       </BottomContainer>
     </InnerNavContainer>
   );
@@ -128,7 +128,7 @@ const InnerNavContainer = styled.div`
   top: 0;
   right: 0;
   left: 0;
-  height: ${({ pathname }) => (pathname === "/home" ? 183 : 130)}px;
+  height: ${({ pathname }) => (pathname === "/home" ? 130 : 130)}px;
   display: flex;
   flex-direction: column;
   align-items: center;

@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
+import Draggable from "react-draggable";
 const EventsSection = () => {
   return (
     <Block>
@@ -8,71 +9,82 @@ const EventsSection = () => {
         <EventsContainerOuter>
           <EventsContainerInner>
             <Icon src="https://nokammysupkvthqndlsz.supabase.co/storage/v1/object/public/kusaweb-bucket/images/bell.png"></Icon>
-
-            <AnnouncementElement>
-              <IconWrapper>
-                <Icon
-                  small
-                  src="https://nokammysupkvthqndlsz.supabase.co/storage/v1/object/public/kusaweb-bucket/images/pin.png"
-                ></Icon>
-              </IconWrapper>
-              <TextBox>
-                <HeadBlock>
-                  회비 안내
-                  <DateBox>05/09</DateBox>
-                </HeadBlock>
-                <div>이번 1월 회비 벤모 @gildongneedscash 로 보내주세요</div>
-              </TextBox>
-            </AnnouncementElement>
-            <NotificationElement>
-              <IconWrapper>
-                <Icon src="https://nokammysupkvthqndlsz.supabase.co/storage/v1/object/public/kusaweb-bucket/images/message.png"></Icon>
-              </IconWrapper>
-              <TextBox>
-                <HeadBlock>
-                  1팀 VS 2팀
-                  <DateBox>11/23</DateBox>
-                </HeadBlock>
-                {<div>경기 12시 시작입니다 11시 55분까지 디코 모여주세요</div>}
-              </TextBox>
-            </NotificationElement>
-            <SocialElement>
-              <IconWrapper>
-                <Icon src="https://nokammysupkvthqndlsz.supabase.co/storage/v1/object/public/kusaweb-bucket/images/social.png"></Icon>
-              </IconWrapper>
-              <TextBox>
-                <HeadBlock>
-                  BOB Social!
-                  <DateBox>12/03</DateBox>
-                </HeadBlock>
-                {
-                  <div>
-                    Please bring your own liquor! We are providing some good ass
-                    homemade pizza and I am afraid that I am running out of
-                    words to type in this demo box so that I can demonstrate
-                    that these notification blocks will resize itself by the
-                    length of the descriptions. But if it is too long like this
-                    one the cell will leave...
-                  </div>
-                }
-              </TextBox>
-            </SocialElement>
-            <MeetingElement>
-              <IconWrapper>
-                <Icon src="https://nokammysupkvthqndlsz.supabase.co/storage/v1/object/public/kusaweb-bucket/images/meeting.png"></Icon>
-              </IconWrapper>
-              <TextBox>
-                <HeadBlock>
-                  Board Members Meeting
-                  <DateBox>12/08</DateBox>
-                </HeadBlock>
-                {
-                  <div>
-                    Please bring your computers Location: 6974 Humanities
-                  </div>
-                }
-              </TextBox>
-            </MeetingElement>
+            <Draggable position={{ x: 0, y: 0 }}>
+              <AnnouncementElement>
+                <IconWrapper>
+                  <Icon
+                    small
+                    src="https://nokammysupkvthqndlsz.supabase.co/storage/v1/object/public/kusaweb-bucket/images/pin.png"
+                  ></Icon>
+                </IconWrapper>
+                <TextBox>
+                  <HeadBlock>
+                    회비 안내
+                    <DateBox>05/09</DateBox>
+                  </HeadBlock>
+                  <div>이번 1월 회비 벤모 @gildongneedscash 로 보내주세요</div>
+                </TextBox>
+              </AnnouncementElement>
+            </Draggable>
+            <Draggable position={{ x: 0, y: 0 }}>
+              <NotificationElement>
+                <IconWrapper>
+                  <Icon src="https://nokammysupkvthqndlsz.supabase.co/storage/v1/object/public/kusaweb-bucket/images/message.png"></Icon>
+                </IconWrapper>
+                <TextBox>
+                  <HeadBlock>
+                    1팀 VS 2팀
+                    <DateBox>11/23</DateBox>
+                  </HeadBlock>
+                  {
+                    <div>
+                      경기 12시 시작입니다 11시 55분까지 디코 모여주세요
+                    </div>
+                  }
+                </TextBox>
+              </NotificationElement>
+            </Draggable>
+            <Draggable position={{ x: 0, y: 0 }}>
+              <SocialElement>
+                <IconWrapper>
+                  <Icon src="https://nokammysupkvthqndlsz.supabase.co/storage/v1/object/public/kusaweb-bucket/images/social.png"></Icon>
+                </IconWrapper>
+                <TextBox>
+                  <HeadBlock>
+                    BOB Social!
+                    <DateBox>12/03</DateBox>
+                  </HeadBlock>
+                  {
+                    <div>
+                      Please bring your own liquor! We are providing some good
+                      ass homemade pizza and I am afraid that I am running out
+                      of words to type in this demo box so that I can
+                      demonstrate that these notification blocks will resize
+                      itself by the length of the descriptions. But if it is too
+                      long like this one the cell will leave...
+                    </div>
+                  }
+                </TextBox>
+              </SocialElement>
+            </Draggable>
+            <Draggable position={{ x: 0, y: 0 }}>
+              <MeetingElement>
+                <IconWrapper>
+                  <Icon src="https://nokammysupkvthqndlsz.supabase.co/storage/v1/object/public/kusaweb-bucket/images/meeting.png"></Icon>
+                </IconWrapper>
+                <TextBox>
+                  <HeadBlock>
+                    Board Members Meeting
+                    <DateBox>12/08</DateBox>
+                  </HeadBlock>
+                  {
+                    <div>
+                      Please bring your computers Location: 6974 Humanities
+                    </div>
+                  }
+                </TextBox>
+              </MeetingElement>
+            </Draggable>
           </EventsContainerInner>
         </EventsContainerOuter>
         <Field>Drag here to Open</Field>
