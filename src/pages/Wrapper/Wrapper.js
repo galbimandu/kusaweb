@@ -23,11 +23,12 @@ const PageWrapper = styled.div`
   right: 0;
   overflow-y: scroll;
   overflow-x: hidden;
+  background-color: ${({ theme }) => theme.colors.color_button_white};
 `;
 
 const Content = styled.div`
   /* margin-top: ${({ pathname }) => (pathname === "/home" ? 183 : 130)}px; */
-  background-color: white;
+  background-color: ${({ theme }) => theme.colors.color_button_white};
   z-index: 1;
   /* @media ${({ theme }) => theme.screenSizes.mobile} {
     left: ${({ sidebarIsOpen }) => (sidebarIsOpen ? "52px" : "0")};
