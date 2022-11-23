@@ -1,6 +1,7 @@
 import React from "react";
 import { Card } from "ui";
 import styled from "styled-components";
+import EventsSection from "pages/Organization/Components/EventsSection";
 const AboutUs = () => {
   const WE = ["승제", "승제2", "승제3", "승제4", "승제5"];
   const message =
@@ -105,74 +106,12 @@ const AboutUs = () => {
           <Head>About Us</Head>
           <Box>{message}</Box>
         </Block>
-        <Block>
-          <Head>Events</Head>
-          <HorizontalBlock>
-            <EventsContainerOuter>
-              <EventsContainerInner>
-                <Icon src="@styled-icons/fa-solid/Bell"></Icon>
-                <AnnouncementElement>
-                  <Icon src="@styled-icons/fa-solid/Bell"></Icon>
-                  <TextBox>
-                    <HeadBlock>
-                      내생일
-                      <DateBox>05/09</DateBox>
-                    </HeadBlock>
-                    {<div>아이패드가 갖고 싶네요.</div>}
-                  </TextBox>
-                </AnnouncementElement>
-                <NotificationElement>
-                  <Icon src="@styled-icons/fa-solid/Bell"></Icon>
-                  <TextBox>
-                    <HeadBlock>
-                      1팀 VS 2팀
-                      <DateBox>11/23</DateBox>
-                    </HeadBlock>
-                    {
-                      <div>
-                        경기 12시 시작입니다 11시 55분까지 디코 모여주세요
-                      </div>
-                    }
-                  </TextBox>
-                </NotificationElement>
-                <SocialElement>
-                  <Icon src="@styled-icons/fa-solid/Bell"></Icon>
-                  <TextBox>
-                    <HeadBlock>
-                      BOB Social!
-                      <DateBox>12/03</DateBox>
-                    </HeadBlock>
-                    {
-                      <div>
-                        Please bring your own liquor! We are providing some good
-                        ass homemade pizza and I am afraid that I am running out
-                        of words to type in this demo box so that I can
-                        demonstrate that these notification blocks will resize
-                        itself by the length of the descriptions. But if it is
-                        too long like this one the cell will leave...
-                      </div>
-                    }
-                  </TextBox>
-                </SocialElement>
-                <MeetingElement>
-                  <Icon src="@styled-icons/fa-solid/Bell"></Icon>
-                  <TextBox>
-                    <HeadBlock>
-                      Board Members Meeting
-                      <DateBox>12/08</DateBox>
-                    </HeadBlock>
-                    {
-                      <div>
-                        Please bring your computers Location: 6974 Humanities
-                      </div>
-                    }
-                  </TextBox>
-                </MeetingElement>
-              </EventsContainerInner>
-            </EventsContainerOuter>
-            <Field>Drag here to Open</Field>
-          </HorizontalBlock>
-        </Block>
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <EventsSection />
         <Block>
           <Head>Board Members</Head>
           {generateMembersDescriptions()}
@@ -192,6 +131,7 @@ const AboutUsContainer = styled.div``;
 
 const TopSection = styled.div`
   margin-top: 100px;
+  margin-bottom: 130px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -362,7 +302,6 @@ const AvatarBox = styled.div`
 
 const Block = styled.div`
   width: 1100px;
-  margin-top: 130px;
 `;
 const Box = styled.div`
   width: 1075px;

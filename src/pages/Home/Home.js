@@ -47,6 +47,9 @@ const Home = () => {
 
   return (
     <HomeWrapper>
+      <LogoTextContainer>
+        The hub for Korean Undergraduate Students and Organizations
+      </LogoTextContainer>
       <BannerImg
         alt="uw madison banner"
         src="https://nokammysupkvthqndlsz.supabase.co/storage/v1/object/public/kusaweb-bucket/images/Rectangle%201658.svg?t=2022-11-22T04%3A08%3A25.695Z"
@@ -69,6 +72,10 @@ const Home = () => {
 };
 
 export default withRouter(Home);
+
+const LogoTextContainer = styled.div`
+  margin-top: 21px;
+`;
 
 const HomeWrapper = styled.div`
   display: flex;

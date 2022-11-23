@@ -89,11 +89,11 @@ const InnerNav = (props) => {
         <LogoContainer>
           <KusaLogo onClick={() => handlePageChange("home")} />
         </LogoContainer>
-        {props.location.pathname === "/home" && (
+        {/* {props.location.pathname === "/home" && (
           <LogoTextContainer>
             The hub for Korean Undergraduate Students and Organizations
           </LogoTextContainer>
-        )}
+        )} */}
       </BottomContainer>
     </InnerNavContainer>
   );
@@ -102,7 +102,12 @@ const InnerNav = (props) => {
 export default withRouter(InnerNav);
 
 const LogoContainer = styled.div`
-  cursor: pointer;
+  cursor: url("https://nokammysupkvthqndlsz.supabase.co/storage/v1/object/public/kusaweb-bucket/images/cursorPoint.png"),
+    auto;
+  * {
+    cursor: url("https://nokammysupkvthqndlsz.supabase.co/storage/v1/object/public/kusaweb-bucket/images/cursorPoint.png"),
+      auto;
+  }
 `;
 
 const LogoTextContainer = styled.div`
@@ -111,7 +116,8 @@ const LogoTextContainer = styled.div`
 
 const PageNavigator = styled.div`
   margin-right: 24px;
-  cursor: pointer;
+  cursor: url("https://nokammysupkvthqndlsz.supabase.co/storage/v1/object/public/kusaweb-bucket/images/cursorPoint.png"),
+    auto;
 `;
 
 const AvatarDropdown = styled(Dropdown)``;
@@ -122,7 +128,7 @@ const InnerNavContainer = styled.div`
   top: 0;
   right: 0;
   left: 0;
-  height: ${({ pathname }) => (pathname === "/home" ? 183 : 130)}px;
+  height: ${({ pathname }) => (pathname === "/home" ? 130 : 130)}px;
   display: flex;
   flex-direction: column;
   align-items: center;

@@ -32,7 +32,8 @@ const MemberAvatar = styled(Avatar)`
   border: ${(props) =>
     `2px solid ${props.theme.colors.color_base_white} !important`};
   color: white;
-  cursor: pointer;
+  cursor: url("https://nokammysupkvthqndlsz.supabase.co/storage/v1/object/public/kusaweb-bucket/images/cursorPoint.png"),
+    auto;
   font-size: ${(props) => `${props.size * 0.6}px !important`};
   line-height: ${(props) => `${props.size * 0.875}px !important`};
 

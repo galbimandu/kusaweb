@@ -58,6 +58,7 @@ body * {
     background: #999;
     border-radius: 5px;
   }
+  cursor: url("https://nokammysupkvthqndlsz.supabase.co/storage/v1/object/public/kusaweb-bucket/images/cursor.png"), auto;
 }
 *:focus {
     outline: 0;
@@ -192,7 +193,7 @@ body * {
 button {
   border: none;
   outline: none;
-  cursor: pointer;
+  cursor: url("https://nokammysupkvthqndlsz.supabase.co/storage/v1/object/public/kusaweb-bucket/images/cursorPoint.png"), auto;
 }
 input {
   outline: none;
@@ -204,7 +205,7 @@ input::-webkit-inner-spin-button {
   margin: 0;
 }
 .ant-avatar{
-  cursor: pointer;
+  cursor: url("https://nokammysupkvthqndlsz.supabase.co/storage/v1/object/public/kusaweb-bucket/images/cursorPoint.png"), auto;
   user-select: none;
 }
 div{
@@ -393,7 +394,7 @@ input {
 button {
   border: none;
   outline: none;
-  cursor: pointer;
+  cursor: url("https://nokammysupkvthqndlsz.supabase.co/storage/v1/object/public/kusaweb-bucket/images/cursorPoint.png"), auto;
 } */
 `;
 
