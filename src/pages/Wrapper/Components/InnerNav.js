@@ -102,7 +102,12 @@ const InnerNav = (props) => {
 export default withRouter(InnerNav);
 
 const LogoContainer = styled.div`
-  cursor: pointer;
+  cursor: url("https://nokammysupkvthqndlsz.supabase.co/storage/v1/object/public/kusaweb-bucket/images/cursorPoint.png"),
+    auto;
+  * {
+    cursor: url("https://nokammysupkvthqndlsz.supabase.co/storage/v1/object/public/kusaweb-bucket/images/cursorPoint.png"),
+      auto;
+  }
 `;
 
 const LogoTextContainer = styled.div`
@@ -111,7 +116,8 @@ const LogoTextContainer = styled.div`
 
 const PageNavigator = styled.div`
   margin-right: 24px;
-  cursor: pointer;
+  cursor: url("https://nokammysupkvthqndlsz.supabase.co/storage/v1/object/public/kusaweb-bucket/images/cursorPoint.png"),
+    auto;
 `;
 
 const AvatarDropdown = styled(Dropdown)``;

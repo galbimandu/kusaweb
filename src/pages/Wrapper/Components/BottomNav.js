@@ -45,8 +45,10 @@ const Textone = styled.div`
   color: ${({ theme }) => theme.colors.color_text_footer};
 `;
 const Texttwo = styled.div`
-  cursor: pointer;
+  cursor: url("https://nokammysupkvthqndlsz.supabase.co/storage/v1/object/public/kusaweb-bucket/images/cursorPoint.png"),
+    auto;
   font-weight: 700;
   font-size: 14px;
   color: ${({ theme }) => theme.colors.color_text_footer};
+  height: 30px;
 `;
