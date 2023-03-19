@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { withRouter } from "react-router-dom";
 import styled from "styled-components";
 import ksea from "images/logo/KSEA.svg";
@@ -11,7 +11,8 @@ import kesa from "images/logo/kesa.png";
 import kbsa from "images/logo/kbsa.png";
 import madk from "images/logo/madk.png";
 import kuha from "images/logo/kuha.png";
-
+import useSBData from "utils/useSBData";
+import { getOrgs } from "apicache";
 const Home = () => {
   const logos = [
     [ksea, "KSEA"],
@@ -25,6 +26,20 @@ const Home = () => {
     [madk, "MAD-K"],
     [kuha, "KUHA"],
   ];
+
+  const [orgData, setOrgData] = useState({});
+
+  const orgDataAPI = useSBData;
+
+  useEffect(() => {
+    orgDataAPI(setOrgData, getOrgs());
+  }, [orgDataAPI]);
+
+  useEffect(() => {
+    if (orgData) {
+      console.log(orgData);
+    }
+  }, [orgData]);
 
   const generateMembersDescriptions = () =>
     logos.map((logo) => (
