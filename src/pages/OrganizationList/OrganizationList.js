@@ -33,6 +33,7 @@ const OrganizationList = () => {
             cover={<img alt="cover" src={org.bg_url} height={180} width={300} />}
             onClick={() => handleOrgCardClick(org)}
             hoverable={true}
+            key={org.id}
           >
             <Meta
               avatar={<Avatar src={org.logo_url} size="large" />}
