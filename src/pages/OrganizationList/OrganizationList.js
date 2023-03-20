@@ -1,22 +1,20 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { Card, Avatar } from "ui";
 import { useHistory } from "react-router-dom";
-// import unikists from "images/logo/unikists-cropped.png";
-// import ksea from "images/logo/KSEA.svg";
-// import unikistsbg from "images/background/unikists.JPG";
-// import badger from "images/logo/badger.svg";
-// import kcu from "images/background/kcu.png";
-// import kesl from "images/logo/kesl.png";
-// import kic from "images/logo/kic.png";
-// import kesa from "images/logo/kesa.png";
-// import kbsa from "images/logo/kbsa.png";
-// import madk from "images/logo/madk.png";
-// import kuha from "images/logo/kuha.png";
+import { getOrgs } from "apicache";
+import useSBData from "utils/useSBData";
 
 const OrganizationList = () => {
   const history = useHistory();
-  const orgData = [];
+
+  const [orgData, setOrgData] = useState([]);
+
+  const orgDataAPI = useSBData;
+
+  useEffect(() => {
+    orgDataAPI(setOrgData, getOrgs());
+  }, [orgDataAPI]);
 
   const handleOrgCardClick = (org) => {
     history.push(`/organizations/${org.id}`);
@@ -30,7 +28,9 @@ const OrganizationList = () => {
       <OrgCardWrapper>
         {orgData.map((org) => (
           <OrgCard
-            cover={<img alt="cover" src={org.bg_url} height={180} width={300} />}
+            cover={
+              <img alt="cover" src={org.bg_url} height={180} width={300} />
+            }
             onClick={() => handleOrgCardClick(org)}
             hoverable={true}
             key={org.id}
