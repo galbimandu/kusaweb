@@ -1,102 +1,20 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { Card, Avatar } from "ui";
 import { useHistory } from "react-router-dom";
-import unikists from "images/logo/unikists-cropped.png";
-import ksea from "images/logo/KSEA.svg";
-import unikistsbg from "images/background/unikists.JPG";
-import badger from "images/logo/badger.svg";
-import kcu from "images/background/kcu.png";
-import kesl from "images/logo/kesl.png";
-import kic from "images/logo/kic.png";
-import kesa from "images/logo/kesa.png";
-import kbsa from "images/logo/kbsa.png";
-import madk from "images/logo/madk.png";
-import kuha from "images/logo/kuha.png";
+import { getOrgs } from "apicache";
+import useSBData from "utils/useSBData";
 
 const OrganizationList = () => {
   const history = useHistory();
-  const orgData = [
-    {
-      id: 50,
-      abrv: "KCU",
-      fullname: "Korean Undergraduate Computer Science Union",
-      description: "한인 최고의 프로젝트 동아리",
-      avatar: kcu,
-      cover: "https://picsum.photos/300/182",
-    },
-    {
-      id: 51,
-      abrv: "Unikists",
-      description: "한인 최고의 밴드 동아리",
-      avatar: unikists,
-      cover: unikistsbg,
-    },
-    {
-      id: 52,
-      abrv: "KSEA",
-      fullname: "Korean-American Scientists and Engineers Association",
-      description: "한인 과학 동아리",
-      avatar: ksea,
-      cover: "https://picsum.photos/300/182",
-    },
-    {
-      id: 53,
-      abrv: "KESL",
-      fullname: "Korean E-Sports Legacy",
-      description: "한인 최강의 게임 동아리",
-      avatar: kesl,
-      cover: "https://picsum.photos/300/182",
-    },
-    {
-      id: 55,
-      abrv: "KIC",
-      fullname: "KIC",
-      description: "한인 주식 동아리",
-      avatar: kic,
-      cover: "https://picsum.photos/300/182",
-    },
-    {
-      id: 56,
-      abrv: "KESA",
-      fullname: "KESA",
-      description: "Organization for Economics",
-      avatar: kesa,
-      cover: "https://picsum.photos/300/182",
-    },
-    {
-      id: 57,
-      abrv: "KBSA",
-      fullname: "KBSA",
-      description: "Organization for Business",
-      avatar: kbsa,
-      cover: "https://picsum.photos/300/182",
-    },
-    {
-      id: 59,
-      abrv: "MAD-K",
-      fullname: "MAD-K",
-      description: "한인 축구 동아리",
-      avatar: madk,
-      cover: "https://picsum.photos/300/182",
-    },
-    {
-      id: 60,
-      abrv: "KUHA",
-      fullname: "Korean Undergraduates Health Association",
-      description: "한인 최고의 헬스 동아리",
-      avatar: kuha,
-      cover: "https://picsum.photos/300/182",
-    },
-    {
-      id: 61,
-      abrv: "EXMP",
-      fullname: "EXAMPLE FULL NAME",
-      description: "Brief Description of Organization.",
-      avatar: badger,
-      cover: "https://picsum.photos/300/182",
-    },
-  ];
+
+  const [orgData, setOrgData] = useState([]);
+
+  const orgDataAPI = useSBData;
+
+  useEffect(() => {
+    orgDataAPI(setOrgData, getOrgs());
+  }, [orgDataAPI]);
 
   const handleOrgCardClick = (org) => {
     history.push(`/organizations/${org.id}`);
@@ -110,15 +28,17 @@ const OrganizationList = () => {
       <OrgCardWrapper>
         {orgData.map((org) => (
           <OrgCard
-            cover={<img alt="cover" src={org.cover} height={180} width={300} />}
+            cover={
+              <img alt="cover" src={org.bg_url} height={180} width={300} />
+            }
             onClick={() => handleOrgCardClick(org)}
             hoverable={true}
             key={org.id}
           >
             <Meta
-              avatar={<Avatar src={org.avatar} size="large" />}
-              title={org.abrv}
-              description={org.description}
+              avatar={<Avatar src={org.logo_url} size="large" />}
+              title={org.short_name}
+              description={org.short_description}
             />
           </OrgCard>
         ))}
