@@ -1,30 +1,54 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import styled, { ThemeContext } from "styled-components";
 import EventsSection from "./Components/EventsSection";
-const orgData = {
-  name: "Korean E-Sports Legacy",
-  description:
-    "Lorem ipsum dolor sit amet consectetur adipiscing elit. Mauris portapretium odio in auctor. Vivamus placerat molestie sem quis vestibulum.Aenean auctor rutrum odio scelerisque rhoncus. Aliquam in ex sit ametsapien volutpat cursus. Maecenas quis dignissim quam, mattis euismodmagna. Sed elit mauris, sagittis in tincidunt vitae, lacinia id lectus. Vestibulum ipsum libero, ornare ac diam vitae, accumsan ullamcorper nulla.Curabitur viverra eu magna in dictum. Nunc a eros rutrum libero facilisis rhoncus. Praesent scelerisque mattis lectus eget semper. Vivamus indignissim enim. Vestibulum pulvinar rutrum ullamcorper. Morbipellentesque ante vel metus ultricies pellentesque. Donec porta dui lectus, tincidunt rutrum eros congue pretium. Nullam in ligula quis enimullamcorper elementum finibus eu tellus.",
-};
+import { getOrgById, getBoardOrgById } from "apicache";
+import useSBData from "utils/useSBData";
 
 const OrganizationDescription = ({
   match: {
     params: { id: orgID },
   },
 }) => {
-  console.log(orgID);
-
   const onSignUp = () => {
     // createBoardMember(userProfile);
     // window.alert("You just signed up for {orgName}");
   };
+
+  const parameter = useParams();
+  console.log(parameter.id);
+
+  const [orgData, setOrgData] = useState({});
+  const [boardData, setBoard] = useState([]);
+
+  const orgDataAPI = useSBData;
+  const boardAPI = useSBData;
+
+  useEffect(() => {
+    orgDataAPI(setOrgData, getOrgById(parameter.id));
+  }, [orgDataAPI, parameter]);
+
+  useEffect(() => {
+    if (orgData) {
+    }
+  }, [orgData]);
+
+  useEffect(() => {
+    boardAPI(setBoard, getBoardOrgById(parameter.id));
+  }, [boardAPI, parameter]);
+
+  useEffect(() => {
+    if (boardData) {
+      console.log("board data", boardData);
+    }
+  }, [boardData]);
 
   const WE = ["Galbi", "JIN", "HB", "SJ", "ZBZ"];
   const message =
     "Lorem ipsum dolor sit amet consectetur adipiscing elit. Mauris portapretium odio in auctor. Vivamus placerat molestie sem quis vestibulum.Aenean auctor rutrum odio scelerisque rhoncus. Aliquam in ex sit ametsapien volutpat cursus. Maecenas quis dignissim quam, mattis euismodmagna. Sed elit mauris, sagittis in tincidunt vitae, lacinia id lectus. Vestibulum ipsum libero, ornare ac diam vitae, accumsan ullamcorper nulla.Curabitur viverra eu magna in dictum. Nunc a eros rutrum libero facilisis rhoncus. Praesent scelerisque mattis lectus eget semper. Vivamus indignissim enim. Vestibulum pulvinar rutrum ullamcorper. Morbipellentesque ante vel metus ultricies pellentesque. Donec porta dui lectus, tincidunt rutrum eros congue pretium. Nullam in ligula quis enimullamcorper elementum finibus eu tellus.";
 
   const generateMembersDescriptions = () =>
-    WE.map((member) => (
+    boardData.map((member) => (
       <MemberBox>
         <AvatarBox>
           <img
@@ -48,19 +72,19 @@ const OrganizationDescription = ({
   return (
     <PageBorder>
       <LogoBlock>
-        {
+        {orgData["0"] && (
           <img
             alt="cover"
-            src="https://nokammysupkvthqndlsz.supabase.co/storage/v1/object/public/kusaweb-bucket/images/KESLprof.png"
+            src={orgData["0"].logo_url}
             style={{ width: 310, height: 310, padding: 10 }}
             onClick={onSignUp}
           />
-        }
+        )}
       </LogoBlock>
       <Block>
-        <OrgName>{orgData.name}</OrgName>
+        <OrgName>{orgData["0"] && orgData["0"].full_name}</OrgName>
         <Head>About Us</Head>
-        <Box>{orgData.description}</Box>
+        <Box>{orgData["0"] && orgData["0"].description}</Box>
       </Block>
       <EventsSection />
       <Block>

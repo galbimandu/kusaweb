@@ -6,6 +6,7 @@ const useSBData = async (setter, api) => {
   if (data) {
     setter(data);
   }
+  console.log(data);
 };
 
 export default useSBData;

@@ -302,16 +302,17 @@ export async function getUserOrgById(id) {
 }
 
 export async function getBoardOrgById(id) {
+  console.log("here", id);
   const res_org_users = await supabase
     .from("org_users")
     .select("org_id")
     .match({ id: id, status: "board" });
+  console.log(res_org_users);
   if (res_org_users.error) {
     throw res_org_users.error;
   }
-
   let user_org_ids = [];
-  for (var key in res_org_users.data) {
+  for (let key in res_org_users.data) {
     user_org_ids.push(res_org_users.data[key].org_id);
   }
 
@@ -323,10 +324,21 @@ export async function getBoardOrgById(id) {
     throw org_res.error;
   }
   let orgs = [];
-  for (var key in org_res.data) {
+  for (let key in org_res.data) {
     orgs.push(org_res.data[key]);
   }
-  return orgs;
+  return { data: orgs };
+}
+
+export async function getOrgById(id) {
+  const { data, error } = await supabase
+    .from("organizations")
+    .select()
+    .eq("id", id);
+  if (error) {
+    throw error;
+  }
+  return { data };
 }
 
 export async function getUserInfo(id) {

@@ -26,7 +26,7 @@ const OrganizationList = () => {
       cover: "https://picsum.photos/300/182",
     },
     {
-      id: 51,
+      id: 2,
       abrv: "Unikists",
       description: "한인 최고의 밴드 동아리",
       avatar: unikists,
@@ -41,7 +41,7 @@ const OrganizationList = () => {
       cover: "https://picsum.photos/300/182",
     },
     {
-      id: 53,
+      id: 3,
       abrv: "KESL",
       fullname: "Korean E-Sports Legacy",
       description: "한인 최강의 게임 동아리",
