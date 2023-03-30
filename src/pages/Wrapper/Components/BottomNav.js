@@ -9,7 +9,7 @@ export const BottomNav = () => {
   return (
     <BottomNavContainer>
       <Horizontal />
-      <Textone>2022&nbsp; KUSA</Textone>
+      <Textone>2023&nbsp; KUSA</Textone>
       <Texttwo onClick={handleGalbros}>made by &nbsp;GALBROS</Texttwo>
     </BottomNavContainer>
   );
